@@ -1,141 +1,124 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import requests
 import sqlite3
-import os
-import asyncio
-import httpx
-import logging
 
 app = Flask(__name__)
 CORS(app)
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, filename="app.log", format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger()
+API_KEY = '270d112f0b8b37910aafe4c612ad5b93ffae8fd48ab0b2f68c4c9723acf2e90f'  # Replace with your VirusTotal API key
+DB_FILE = 'subdomains.db'
 
-# Load API key from environment variable
-API_KEY = os.getenv('VT_API_KEY')
-if not API_KEY:
-    logger.error("VirusTotal API key is not set in the environment variables.")
-    raise ValueError("API key not found. Set VT_API_KEY as an environment variable.")
-
-DB_FILE = 'subdomains_and_reports.db'
-
-# Initialize SQLite database
-def init_db():
+def store_subdomains(domain, subdomains):
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS subdomain_reports (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            domain TEXT NOT NULL,
-            subdomain TEXT NOT NULL,
-            report TEXT
-        )
-    ''')
+    for subdomain in subdomains:
+        cursor.execute('INSERT INTO subdomain_results (domain, subdomain) VALUES (?, ?)', (domain, subdomain))
     conn.commit()
     conn.close()
 
-# Store subdomains and their reports in the database
-def store_subdomains_and_reports(domain, subdomain_data):
-    try:
-        conn = sqlite3.connect(DB_FILE)
-        cursor = conn.cursor()
-        for subdomain, report in subdomain_data.items():
-            cursor.execute('''
-                INSERT INTO subdomain_reports (domain, subdomain, report)
-                VALUES (?, ?, ?)
-            ''', (domain, subdomain, str(report)))
-        conn.commit()
-        conn.close()
-    except sqlite3.Error as e:
-        logger.error(f"Database error: {e}")
+def fetch_subdomains_from_db(domain):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('SELECT subdomain FROM subdomain_results WHERE domain = ?', (domain,))
+    rows = cursor.fetchall()
+    conn.close()
+    return [row[0] for row in rows]
 
-# Fetch stored subdomains and reports from the database
-def fetch_subdomains_and_reports_from_db(domain):
-    try:
-        conn = sqlite3.connect(DB_FILE)
-        cursor = conn.cursor()
-        cursor.execute('''
-            SELECT subdomain, report FROM subdomain_reports
-            WHERE domain = ?
-        ''', (domain,))
-        rows = cursor.fetchall()
-        conn.close()
-        return {row[0]: eval(row[1]) for row in rows}  # Convert string back to dict
-    except sqlite3.Error as e:
-        logger.error(f"Database error: {e}")
-        return {}
+def store_malware_analysis(domain, analysis):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO malware_results (domain, analysis) VALUES (?, ?)', (domain, analysis))
+    conn.commit()
+    conn.close()
 
-# Asynchronous function to fetch subdomain report
-async def fetch_subdomain_report(subdomain, headers):
-    url = f'https://www.virustotal.com/api/v3/domains/{subdomain}'
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url, headers=headers)
-        response.raise_for_status()
-        return subdomain, response.json().get('data', {}).get('attributes', {})
-
-# Fetch all subdomain reports concurrently
-async def fetch_all_subdomain_reports(subdomains, headers):
-    tasks = [fetch_subdomain_report(sub, headers) for sub in subdomains]
-    return await asyncio.gather(*tasks)
+def fetch_malware_analysis_from_db(domain):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('SELECT analysis FROM malware_results WHERE domain = ?', (domain,))
+    row = cursor.fetchone()
+    conn.close()
+    return row[0] if row else None
 
 @app.route('/')
 def home():
-    return "Welcome to the Subdomain and Domain Report Tool API. Use /api/subdomains-reports."
+    return "Welcome to the Subdomain Tool API. Use the /api/subdomains and /api/malware endpoints."
 
-@app.route('/api/subdomains-reports', methods=['POST'])
-async def get_subdomains_and_reports():
+@app.route('/api/subdomains', methods=['POST'])
+def get_subdomains():
     data = request.get_json()
     domain = data.get('domain')
     if not domain:
         return jsonify({'error': 'Domain is required'}), 400
 
-    # Check if subdomains and reports are already stored
-    stored_data = fetch_subdomains_and_reports_from_db(domain)
-    if stored_data:
-        return jsonify({'data': stored_data})
+    stored_subdomains = fetch_subdomains_from_db(domain)
+    if stored_subdomains:
+        return jsonify({'subdomains': stored_subdomains})
 
-    # VirusTotal API headers
+    url = f'https://www.virustotal.com/api/v3/domains/{domain}/subdomains'
     headers = {'x-apikey': API_KEY}
-    url = f'https://www.virustotal.com/api/v3/domains/{domain}'
 
     try:
-        # Fetch domain information
-        response = httpx.get(url, headers=headers)
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
-
-        # Extract subdomains
-        data = response.json().get('data', {}).get('attributes', {})
-        subdomains = [record.get('value') for record in data.get('last_dns_records', []) if record.get('value')]
-
-        if not subdomains:
-            return jsonify({'error': 'No subdomains found'}), 404
-
-        # Fetch subdomain reports concurrently
-        subdomain_results = await fetch_all_subdomain_reports(subdomains, headers)
-
-        # Process and store the results
-        subdomain_data = {sub: {
-            'last_analysis_stats': report.get('last_analysis_stats', {}),
-            'reputation': report.get('reputation'),
-            'categories': report.get('categories'),
-            'last_analysis_date': report.get('last_analysis_date'),
-            'tags': report.get('tags'),
-            'popularity_ranks': report.get('popularity_ranks', {}),
-        } for sub, report in subdomain_results}
-
-        store_subdomains_and_reports(domain, subdomain_data)
-
-        return jsonify({'data': subdomain_data})
-
-    except httpx.RequestError as e:
-        logger.error(f"Request error: {e}")
+        subdomains = [sub['id'] for sub in response.json().get('data', [])]
+        store_subdomains(domain, subdomains)
+        return jsonify({'subdomains': subdomains})
+    except requests.exceptions.RequestException as e:
         return jsonify({'error': str(e)}), 500
-    except Exception as e:
-        logger.error(f"Unexpected error: {e}")
-        return jsonify({'error': 'An unexpected error occurred'}), 500
+    
+@app.route('/api/whois', methods=['POST'])
+def get_whois_data():
+    data = request.get_json()
+    domain = data.get('domain')
+    if not domain:
+        return jsonify({'error': 'Domain is required'}), 400
+
+    url = f'https://www.virustotal.com/api/v3/domains/{domain}'
+    headers = {'x-apikey': API_KEY}
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        domain_data = response.json()
+
+        whois_data = domain_data.get('data', {}).get('attributes', {}).get('whois', None)
+        if whois_data:
+            return jsonify({'whois': whois_data})
+        else:
+            return jsonify({'error': 'WHOIS data not available for this domain.'}), 404
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/malware', methods=['POST'])
+def get_malware_analysis():
+    data = request.get_json()
+    domain = data.get('domain')
+    if not domain:
+        return jsonify({'error': 'Domain is required'}), 400
+
+    stored_analysis = fetch_malware_analysis_from_db(domain)
+    if stored_analysis:
+        return jsonify({'malwareAnalysis': stored_analysis})
+
+    url = f'https://www.virustotal.com/api/v3/domains/{domain}'
+    headers = {'x-apikey': API_KEY}
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        analysis_data = response.json().get('data', {}).get('attributes', {})
+        last_analysis_stats = analysis_data.get('last_analysis_stats', {})
+        analysis_summary = f"Harmless: {last_analysis_stats.get('harmless', 0)}, " \
+                           f"Malicious: {last_analysis_stats.get('malicious', 0)}, " \
+                           f"Suspicious: {last_analysis_stats.get('suspicious', 0)}, " \
+                           f"Undetected: {last_analysis_stats.get('undetected', 0)}"
+        
+        store_malware_analysis(domain, analysis_summary)
+        return jsonify({'malwareAnalysis': analysis_summary})
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True)

@@ -1,116 +1,185 @@
+/* General Styles */
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #0e1a2b;
   color: white;
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* Ensure content stacks vertically */
+  flex-direction: column;
 }
 
 #root {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20px 0;
-  flex-grow: 1; /* Make the root container flexible */
+  padding: 30px 0;
+  flex-grow: 1;
 }
 
-.container {
-  margin: auto; /* Center horizontally */
+/* Container */
+.scanner-container {
+  margin: auto;
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px;
   background: #1e2b3d;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  width: 90%; /* Responsive width for smaller devices */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  width: 100%;
 }
 
-
-
-.container {
+.scanner-header {
+  margin-bottom: 40px;
   text-align: center;
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #1e2b3d;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
 }
 
-.header {
-  margin-bottom: 30px;
-}
-
-.header .icon {
-  font-size: 50px;
+.scanner-header .icon {
+  font-size: 60px;
   color: #69b4f1;
+  margin-bottom: 15px;
+}
+
+.scanner-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
   margin-bottom: 10px;
 }
 
-.header h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.header p {
-  font-size: 1rem;
+.scanner-header p {
+  font-size: 1.1rem;
   color: #8fa7c1;
+  margin-top: 5px;
 }
 
-.search-box {
+/* Input Section */
+.input-section {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  margin-bottom: 40px;
 }
 
-.search-box input {
-  width: 400px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
+.domain-input {
+  width: 100%;
+  max-width: 450px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid #5b6770;
   outline: none;
-  font-size: 1rem;
-  background-color: #1e2b3d;
+  font-size: 1.1rem;
+  background-color: #2f3a50;
   color: #8fa7c1;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.search-box input::placeholder {
+.domain-input::placeholder {
   color: #6e859c;
 }
 
-.search-box button {
-  padding: 10px 20px;
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.scan-button {
+  padding: 12px 25px;
   background-color: #3173f3;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.search-box button:hover {
+.scan-button:hover {
   background-color: #255bb5;
+  transform: scale(1.05);
 }
 
-.results {
+.malware-button {
+  background-color: #f56565;
+}
+
+.malware-button:hover {
+  background-color: #d43a3a;
+}
+
+/* Results Section */
+.results-section {
   margin-top: 20px;
-  color: #ffffff;
-  text-align: left;
-  font-family: monospace;
-  background-color: #1e2b3d;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.results p {
-  margin: 0;
-  color: #f56565;
+.result-block {
+  margin-bottom: 30px;
+}
+
+.result-block h3 {
+  font-size: 1.3rem;
+  color: #69b4f1;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.result-content {
+  background-color: #1e2b3d;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-height: 100px;
+  white-space: pre-wrap;
+}
+
+/* Bullet List */
+.bullet-list {
+  padding-left: 20px;
+}
+
+.bullet-list li {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #8fa7c1;
+  list-style-type: disc;
+}
+
+.whois-details p {
+  margin: 5px 0;
+  color: #8fa7c1;
+}
+
+.whois-details strong {
+  color: #69b4f1;
+}
+
+@media (max-width: 768px) {
+  .scanner-container {
+    padding: 20px;
+  }
+
+  .input-section {
+    width: 100%;
+  }
+
+  .domain-input {
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .scan-button {
+    width: 100%;
+    font-size: 1rem;
+  }
 }

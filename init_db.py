@@ -1,4 +1,3 @@
-
 import sqlite3
 
 # Connect to SQLite database
@@ -12,6 +11,16 @@ CREATE TABLE IF NOT EXISTS subdomain_results (
     domain TEXT NOT NULL,
     subdomain TEXT NOT NULL,
     fetched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+''')
+
+# Create a table for malware analysis results
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS malware_results (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    domain TEXT NOT NULL,
+    analysis TEXT NOT NULL,
+    analyzed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 ''')
 
