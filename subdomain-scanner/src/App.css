@@ -87,6 +87,7 @@ body, html {
   flex-wrap: wrap;
 }
 
+/* Button Styles */
 .scan-button {
   padding: 12px 25px;
   background-color: #3173f3;
@@ -96,7 +97,7 @@ body, html {
   font-size: 1.1rem;
   cursor: pointer;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .scan-button:hover {
@@ -110,6 +111,14 @@ body, html {
 
 .malware-button:hover {
   background-color: #d43a3a;
+}
+
+.map-button {
+  background-color: #48bb78 !important;
+}
+
+.map-button:hover {
+  background-color: #38a169 !important;
 }
 
 /* Results Section */
@@ -129,57 +138,121 @@ body, html {
 }
 
 .result-content {
-  background-color: #1e2b3d;
+  background-color: #2a364a;
   padding: 15px;
   border-radius: 8px;
-  font-family: 'Courier New', monospace;
-  color: #f1f1f1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   min-height: 100px;
-  white-space: pre-wrap;
 }
 
-/* Bullet List */
 .bullet-list {
-  padding-left: 20px;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .bullet-list li {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  color: #8fa7c1;
-  list-style-type: disc;
+  padding: 5px 0;
+  border-bottom: 1px solid #3a4a63;
 }
 
-.whois-details p {
-  margin: 5px 0;
-  color: #8fa7c1;
+/* Data Display Styles */
+.details p {
+  margin: 8px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid #3a4a63;
 }
 
-.whois-details strong {
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  width: 100%;
+}
+
+.detail-item {
+  background-color: #2a364a;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid #69b4f1;
+}
+
+.detail-key {
+  font-weight: 600;
+  color: #8fa7c1;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.detail-value {
+  color: #fff;
+  word-break: break-word;
+  font-size: 0.95rem;
+}
+
+/* Threat Map Styles */
+.map-container {
+  width: 100%;
+  height: 500px;
+  background: #1e2b3d;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 15px;
+  position: relative;
+}
+
+.map-marker {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.map-marker:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.marker-tooltip {
+  position: fixed;
+  pointer-events: auto;
+  background: #1e2b3d;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #3a4a63;
+  color: white;
+  font-size: 0.9rem;
+  min-width: 200px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.tooltip-header {
   color: #69b4f1;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
-@media (max-width: 768px) {
-  .scanner-container {
-    padding: 20px;
-  }
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
 
-  .input-section {
-    width: 100%;
-  }
+.tooltip-label {
+  color: #8fa7c1;
+}
 
-  .domain-input {
-    width: 100%;
-  }
+.tooltip-value {
+  color: #fff;
+  max-width: 150px;
+  text-align: right;
+}
 
-  .button-group {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* Animations */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
-  .scan-button {
-    width: 100%;
-    font-size: 1rem;
-  }
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 0.2; transform: scale(1); }
 }
