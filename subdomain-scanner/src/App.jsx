@@ -4,6 +4,7 @@ import DomainScanner from "./components/DomainScanner";
 import "./App.css"; // Add styles
 
 const App = () => {
+  
   return (
     <div>
       <DomainScanner />
