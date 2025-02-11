@@ -5,6 +5,7 @@ import sqlite3
 import ssl
 import socket
 import ipinfo
+import subprocess
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
@@ -23,17 +24,26 @@ def connect_db():
     """Establishes a connection to the database."""
     return sqlite3.connect(DB_FILE)
 
-def execute_query(query, params=(), fetch=False, fetch_one=False):
+def execute_query(query, params=(), fetch=False, fetch_one=False, batch=False):
     """Executes a query on the database and handles connection management."""
     conn = connect_db()
     cursor = conn.cursor()
-    cursor.execute(query, params)
-    result = None
-    if fetch:
-        result = cursor.fetchone() if fetch_one else cursor.fetchall()
-    conn.commit()
-    conn.close()
-    return result
+    
+    try:
+        if batch:
+            cursor.executemany(query, params)
+        else:
+            cursor.execute(query, params)
+        
+        result = None
+        if fetch:
+            result = cursor.fetchone() if fetch_one else cursor.fetchall()
+        
+        conn.commit()
+        return result
+    finally:
+        conn.close()
+
 
 def fetch_ssl_details(domain):
     """Fetches SSL/TLS certificate details for the domain."""
@@ -100,7 +110,10 @@ def fetch_subdomains_from_db(domain):
 def store_subdomains(domain, subdomains):
     """Stores subdomain results in the database."""
     query = 'INSERT INTO subdomain_results (domain, subdomain) VALUES (?, ?)'
-    execute_query(query, [(domain, subdomain) for subdomain in subdomains])
+    data = [(domain, subdomain) for subdomain in subdomains]
+    
+    # Use executemany for batch insertions
+    execute_query(query, data, batch=True)
 
 def store_malware_analysis(domain, analysis):
     """Stores malware analysis results in the database."""
@@ -184,16 +197,58 @@ def get_domain_reputation():
 
     return jsonify({'reputationScore': reputation_score, 'categories': categories})
 
+# @app.route('/api/subdomains', methods=['POST'])
+# def get_subdomains():
+#     domain = request.json.get('domain')
+#     if not domain:
+#         return jsonify({'error': 'Domain is required'}), 400
+
+#     stored_subdomains = fetch_subdomains_from_db(domain)
+#     if stored_subdomains:
+#         return jsonify({'subdomains': stored_subdomains})
+
+#     url = f'https://www.virustotal.com/api/v3/domains/{domain}/subdomains'
+#     headers = {'x-apikey': API_KEY}
+
+#     try:
+#         response = requests.get(url, headers=headers)
+#         response.raise_for_status()
+#         subdomains = [sub['id'] for sub in response.json().get('data', [])]
+#         store_subdomains(domain, subdomains)
+#         return jsonify({'subdomains': subdomains})
+#     except requests.exceptions.RequestException as e:
+#         return jsonify({'error': f"Failed to fetch subdomains: {str(e)}"}), 500
+import subprocess
+
 @app.route('/api/subdomains', methods=['POST'])
 def get_subdomains():
     domain = request.json.get('domain')
     if not domain:
         return jsonify({'error': 'Domain is required'}), 400
 
+    # Check existing subdomains in DB
     stored_subdomains = fetch_subdomains_from_db(domain)
     if stored_subdomains:
         return jsonify({'subdomains': stored_subdomains})
 
+    # First, try fetching using subfinder CLI
+    try:
+        subfinder_output = subprocess.check_output(
+            ['subfinder', '-d', domain, '-silent'],
+            stderr=subprocess.DEVNULL,
+            text=True
+        ).strip().split('\n')
+        
+        # Filter out empty results and store them in DB
+        subdomains = list(filter(None, subfinder_output))
+        if subdomains:
+            store_subdomains(domain, subdomains)
+            return jsonify({'subdomains': subdomains})
+
+    except subprocess.CalledProcessError:
+        pass  # Ignore errors and proceed to VirusTotal fallback
+
+    # Fallback to VirusTotal if subfinder fails
     url = f'https://www.virustotal.com/api/v3/domains/{domain}/subdomains'
     headers = {'x-apikey': API_KEY}
 
@@ -201,10 +256,12 @@ def get_subdomains():
         response = requests.get(url, headers=headers)
         response.raise_for_status()
         subdomains = [sub['id'] for sub in response.json().get('data', [])]
-        store_subdomains(domain, subdomains)
+        if subdomains:
+            store_subdomains(domain, subdomains)
         return jsonify({'subdomains': subdomains})
     except requests.exceptions.RequestException as e:
         return jsonify({'error': f"Failed to fetch subdomains: {str(e)}"}), 500
+
 
 @app.route('/api/whois', methods=['POST'])
 def get_whois_data():
