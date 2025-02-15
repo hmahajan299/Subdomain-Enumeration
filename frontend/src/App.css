@@ -4,24 +4,12 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(to bottom right, #1e3c72, #2a5298);
-  color: #fff;
+  color: #cf0d0d;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   overflow: hidden;
-}
-.badge-container {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.badge {
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-left: 10px;
-  font-weight: bold;
 }
 
 /* Header styling */
@@ -247,4 +235,24 @@ body {
 
 .results-section::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
+}
+.threat-box {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.red {
+  background-color: #ff4d4d;
+}
+
+.yellow {
+  background-color: #ffc107;
+  color: black;
+}
+
+.green {
+  background-color: #4caf50;
 }

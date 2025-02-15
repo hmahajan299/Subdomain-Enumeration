@@ -1,131 +1,179 @@
 import React, { useState, useEffect } from "react";
-import "./DomainScanner.jsx";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import "./DomainScanner.jsx";
 
 const DomainScanner = () => {
-  const [threatMapData, setThreatMapData] = useState([]);
+  // State declarations
   const [domain, setDomain] = useState("");
-  const [results, setResults] = useState("");
+  const [subdomainResults, setSubdomainResults] = useState([]); // List of subdomains
+  const [nmapResults, setNmapResults] = useState([]); // Array of Nmap scan results
   const [malwareResults, setMalwareResults] = useState("");
-  const [malwareButtonColor, setMalwareButtonColor] = useState("#3173f3");
   const [whoisResults, setWhoisResults] = useState("");
   const [sslResults, setSslResults] = useState("");
+  const [threatMapData, setThreatMapData] = useState([]);
   const [selectedIp, setSelectedIp] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-  
+
+  // Helper: Format object or array results to JSX
+  const formatResults = (results) => {
+    if (Array.isArray(results)) {
+      return (
+        <ul className="bullet-list">
+          {results.map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      );
+    } else if (typeof results === "object" && results !== null) {
+      return (
+        <div className="details-grid">
+          {Object.entries(results).map(([key, value]) => (
+            <div className="detail-item" key={key}>
+              <div className="detail-key">{key}:</div>
+              <div className="detail-value">{value}</div>
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      return results;
+    }
+  };
+
+  // Input change handler
+  const handleInputChange = (e) => {
+    setDomain(e.target.value);
+  };
+
+  // Basic domain validation
+  const validateDomain = () => domain.trim() !== "";
+
+  // Fetch subdomain list from /api/subdomains
+  const fetchSubdomainList = async () => {
+    if (!validateDomain()) {
+      alert("Please enter a valid domain.");
+      return;
+    }
+    try {
+      const res = await fetch("http://127.0.0.1:5000/api/subdomains", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domain }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        alert(`Error: ${data.error}`);
+      } else {
+        // Expecting data: { subdomains: ["sub1.example.com", ...] }
+        setSubdomainResults(data.subdomains || []);
+      }
+    } catch (error) {
+      console.error("Error fetching subdomains:", error);
+    }
+  };
+
+  // Fetch Nmap scan results: first trigger the scan, then fetch stored results.
+  const fetchNmapResults = async () => {
+    if (!validateDomain()) {
+      alert("Please enter a valid domain.");
+      return;
+    }
+    try {
+      // Trigger the Nmap scan
+      const scanResponse = await fetch(`http://127.0.0.1:5000/scan/${domain}`);
+      const scanData = await scanResponse.json();
+      console.log("Scan status:", scanData);
+
+      // Now retrieve the stored scan results
+      const res = await fetch(`http://127.0.0.1:5000/api/scan-results/${domain}`);
+      const data = await res.json();
+      console.log("Nmap scan results received:", data);
+      if (data.error) {
+        alert(`Error: ${data.error}`);
+      } else {
+        if (Array.isArray(data)) {
+          setNmapResults(data);
+        } else {
+          console.error("Unexpected Nmap results format:", data);
+          setNmapResults([]);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching Nmap results:", error);
+    }
+  };
+
+  // Generic function to fetch data (malware, WHOIS, SSL/TLS)
+  const fetchData = async (url, setResult, resultType) => {
+    if (!validateDomain()) {
+      setResult("Please enter a valid domain.");
+      return;
+    }
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domain }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        setResult(`Error: ${data.error}`);
+      } else {
+        if (resultType === "malware analysis") {
+          setMalwareResults(data.malwareAnalysis || "No results found.");
+        } else if (resultType === "WHOIS data") {
+          setWhoisResults(
+            typeof data.whois === "object" && data.whois !== null
+              ? formatResults(data.whois)
+              : (data.whois || "No results found.")
+          );
+        } else if (resultType === "SSL/TLS details") {
+          setSslResults(
+            typeof data.sslDetails === "object" && data.sslDetails !== null
+              ? formatResults(data.sslDetails)
+              : (data.sslDetails || "No results found.")
+          );
+        }
+      }
+    } catch (error) {
+      console.error(`Error fetching ${resultType}:`, error);
+      setResult(`Error fetching ${resultType}. Please try again.`);
+    }
+  };
+
+  // Fetch threat map data from /api/threat-map/:domain
+  const fetchThreatMap = async () => {
+    if (!validateDomain()) return;
+    try {
+      const res = await fetch(`http://127.0.0.1:5000/api/threat-map/${domain}`);
+      const data = await res.json();
+      setThreatMapData(data.filter((item) => item?.coords && item.coords.length === 2));
+    } catch (error) {
+      console.error("Error fetching threat map data:", error);
+      setThreatMapData([]);
+    }
+  };
+
+  // Hide tooltip on click outside or scroll
   useEffect(() => {
     const handleClickOutside = () => setSelectedIp(null);
     const handleScroll = () => setSelectedIp(null);
-
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("scroll", handleScroll);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const handleInputChange = (event) => {
-    setDomain(event.target.value);
-  };
-
-  const validateDomain = () => {
-    return domain.trim() ? null : "Please enter a valid domain.";
-  };
-
-  const fetchData = async (url, setResultState, resultType) => {
-    const validationError = validateDomain();
-    if (validationError) {
-      setResultState(validationError);
-      return;
-    }
-
-    setResultState(`Fetching ${resultType}...`);
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain }),
-      });
-
-      const data = await response.json();
-      if (data.error) {
-        setResultState(`Error: ${data.error}`);
-      } else if (resultType === "malware analysis") {
-        const isMalicious = data.status === "red";
-        setMalwareButtonColor(isMalicious ? "#d43a3a" : "#38a169");
-        setResultState(data.malwareAnalysis || "No results found.");
-      } else {
-        const resultData = {
-          subdomains: data.subdomains,
-          "malware analysis": data.malwareAnalysis,
-          "WHOIS data": data.whois,
-          "SSL/TLS details": data.sslDetails,
-        }[resultType];
-
-        setResultState(formatResults(resultData) || "No results found.");
-      }
-    } catch (error) {
-      setResultState(`Error fetching ${resultType}. Please try again.`);
-    }
-  };
-
-  const fetchThreatMap = async () => {
-    if (!domain) return;
-
-    try {
-      const response = await fetch(`http://localhost:5000/api/threat-map/${domain}`);
-      const data = await response.json();
-      setThreatMapData(data.filter((item) => item?.coords?.length === 2));
-    } catch (error) {
-      console.error("Threat map error:", error);
-      setThreatMapData([]);
-    }
-  };
-
-  const formatResults = (results) => {
-    if (Array.isArray(results)) {
-      return (
-        <ul className="bullet-list">
-          {results.map((result, index) => (
-            <li key={`result-${index}`}>{result}</li>
-          ))}
-        </ul>
-      );
-    }
-
-    if (typeof results === "object" && results !== null) {
-      return results.hasOwnProperty("Domain Name") ? (
-        <div className="details-grid">
-          {Object.entries(results).map(([key, value]) => (
-            <div className="detail-item" key={`whois-${key}`}>
-              <div className="detail-key">{key}:</div>
-              <div className="detail-value">{value}</div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="details">
-          {Object.entries(results).map(([key, value]) => (
-            <p key={`detail-${key}`}>
-              <strong>{key}:</strong> {value}
-            </p>
-          ))}
-        </div>
-      );
-    }
-
-    return results;
-  };
-
   return (
     <div className="scanner-container">
       <header className="scanner-header">
         <div className="icon">🔒</div>
         <h1>Domain Security Scanner</h1>
-        <p>Subdomain Enumeration, Malware Analysis, WHOIS Data, SSL/TLS Check, Threat Map</p>
+        <p>
+          Subdomain Enumeration, Malware Analysis, WHOIS Data, SSL/TLS Check, Threat Map, Nmap Scan
+        </p>
       </header>
 
       <div className="input-section">
@@ -137,64 +185,83 @@ const DomainScanner = () => {
           onChange={handleInputChange}
         />
         <div className="button-group">
-          <button
-            className="scan-button"
-            onClick={() => fetchData("http://127.0.0.1:5000/api/subdomains", setResults, "subdomains")}
-          >
-            🔍 Subdomain Scan
-          </button>
-          <button
-            className="scan-button malware-button"
-            style={{ backgroundColor: malwareButtonColor }}
-            onClick={() => fetchData("http://127.0.0.1:5000/api/malware", setMalwareResults, "malware analysis")}
-          >
+          <button onClick={fetchSubdomainList}>🔍 Subdomain Scan</button>
+          <button onClick={() => fetchData("http://127.0.0.1:5000/api/malware", setMalwareResults, "malware analysis")}>
             🛡 Malware Analysis
           </button>
-          <button
-            className="scan-button whois-button"
-            onClick={() => fetchData("http://127.0.0.1:5000/api/whois", setWhoisResults, "WHOIS data")}
-          >
+          <button onClick={() => fetchData("http://127.0.0.1:5000/api/whois", setWhoisResults, "WHOIS data")}>
             🌐 WHOIS Data
           </button>
-          <button
-            className="scan-button ssl-button"
-            onClick={() => fetchData("http://127.0.0.1:5000/api/ssl", setSslResults, "SSL/TLS details")}
-          >
+          <button onClick={() => fetchData("http://127.0.0.1:5000/api/ssl", setSslResults, "SSL/TLS details")}>
             🔑 SSL/TLS Check
           </button>
-          <button
-            className="scan-button map-button"
-            onClick={async () => {
-              await fetchData("http://127.0.0.1:5000/api/subdomains", setResults, "subdomains");
-              fetchThreatMap();
-            }}
-          >
-            🌍 Threat Map
-          </button>
+          <button onClick={fetchThreatMap}>🌍 Threat Map</button>
+          <button onClick={fetchNmapResults}>Scan Subdomains (Nmap)</button>
         </div>
       </div>
 
       <div className="results-section">
+        {/* Subdomain List */}
         <div className="result-block">
-          <h3>Subdomain Results:</h3>
-          <div className="result-content">{results || "No results yet."}</div>
+          <h3>Subdomain List:</h3>
+          <div className="result-content">
+            {subdomainResults.length > 0 ? (
+              <ul>
+                {subdomainResults.map((sub, idx) => (
+                  <li key={idx}>{sub}</li>
+                ))}
+              </ul>
+            ) : (
+              "No subdomains found."
+            )}
+          </div>
         </div>
-        
+
+        {/* Nmap Scan Results */}
+        <div className="result-block">
+          <h3>Nmap Scan Results for {domain}:</h3>
+          <div className="result-content">
+            {nmapResults.length > 0 ? (
+              nmapResults.map((result, idx) => (
+                <div key={idx}>
+                  <h4>{result.subdomain}</h4>
+                  <p>
+                    <strong>IP:</strong> {result.ip_address}
+                  </p>
+                  <p>
+                    <strong>Hostname:</strong> {result.hostname}
+                  </p>
+                  <p>
+                    <strong>Open Ports:</strong>
+                    <pre>{result.open_ports}</pre>
+                  </p>
+                </div>
+              ))
+            ) : (
+              "No Nmap scan results found."
+            )}
+          </div>
+        </div>
+
+        {/* Malware Analysis */}
         <div className="result-block">
           <h3>Malware Analysis Results:</h3>
           <div className="result-content">{malwareResults || "No results yet."}</div>
         </div>
 
+        {/* WHOIS Data */}
         <div className="result-block">
           <h3>WHOIS Data:</h3>
           <div className="result-content">{whoisResults || "No results yet."}</div>
         </div>
 
+        {/* SSL/TLS Check */}
         <div className="result-block">
           <h3>SSL/TLS Check:</h3>
           <div className="result-content">{sslResults || "No results yet."}</div>
         </div>
 
+        {/* Threat Map */}
         {threatMapData.length > 0 && (
           <div className="result-block">
             <h3>Threat Map:</h3>
@@ -212,9 +279,9 @@ const DomainScanner = () => {
                     ))
                   }
                 </Geographies>
-                {threatMapData.map((loc, i) => (
+                {threatMapData.map((loc, idx) => (
                   <Marker
-                    key={`marker-${i}`}
+                    key={`marker-${idx}`}
                     coordinates={[loc.coords[1], loc.coords[0]]}
                     onClick={(e) => {
                       setSelectedIp(loc);
@@ -234,10 +301,7 @@ const DomainScanner = () => {
               {selectedIp && (
                 <div
                   className="marker-tooltip"
-                  style={{
-                    left: tooltipPosition.x + 15,
-                    top: tooltipPosition.y - 50,
-                  }}
+                  style={{ left: tooltipPosition.x + 15, top: tooltipPosition.y - 50 }}
                 >
                   <div className="tooltip-header">{selectedIp.city || "Unknown Location"}</div>
                   <div className="tooltip-row">
