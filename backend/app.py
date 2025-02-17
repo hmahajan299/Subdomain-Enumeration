@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import requests
 import sqlite3
@@ -7,7 +7,9 @@ import socket
 import ipinfo
 import subprocess
 from datetime import datetime, timedelta
-
+from flask import render_template, make_response
+from weasyprint import HTML
+from flask_cors import cross_origin
 app = Flask(__name__)
 CORS(app)
 
@@ -20,17 +22,56 @@ ABUSEIPB_KEY = '7e9cd5d791817a00bd8ee844c00cdc5b426fb50fd12e9bddc6c2d991c14d4b58
 # Initialize IPinfo handler
 ipinfo_handler = ipinfo.getHandler(IPINFO_TOKEN)
 
+def init_db():
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    # Create table for scan results
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS scan_results (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            domain TEXT,
+            subdomain TEXT,
+            ip_address TEXT,
+            hostname TEXT,
+            open_ports TEXT,
+            scan_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    # Create table for subdomain results (if not already present)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS subdomain_results (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            domain TEXT,
+            subdomain TEXT
+        )
+    """)
+    # Create table for malware analysis (if needed)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS malware_results (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            domain TEXT,
+            analysis TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
 def run_nmap_scan(subdomain):
     """Runs Nmap scan on a subdomain and returns IP, hostname, and open ports."""
     try:
         result = subprocess.check_output(['nmap', '-Pn', '-sV', subdomain], text=True)
-        ip_address = socket.gethostbyname(subdomain)
+        try:
+            ip_address = socket.gethostbyname(subdomain)
+        except Exception as e:
+            print(f"Error resolving {subdomain}: {e}")
+            ip_address = "Unknown"
         hostname = subdomain
         open_ports = []
         for line in result.splitlines():
             if "/tcp" in line or "/udp" in line:
                 open_ports.append(line.strip())
         open_ports = "\n".join(open_ports)
+        print(f"Nmap scan for {subdomain}: IP={ip_address}, Ports={open_ports}")
         return ip_address, hostname, open_ports
     except Exception as e:
         print(f"Error scanning {subdomain}: {e}")
@@ -150,6 +191,73 @@ def get_ip_geodata(ip):
     except:
         return None
 
+
+
+@app.route('/api/generate-report', methods=['POST','OPTIONS'])
+@cross_origin()
+def generate_report():
+    domain = request.json.get("domain")
+    if not domain:
+        return jsonify({"error": "Domain is required"}), 400
+
+    # Retrieve data from your existing functions
+    subdomains = fetch_subdomains_from_db(domain)
+    scan_rows = execute_query("SELECT subdomain, ip_address, hostname, open_ports FROM scan_results WHERE domain = ?", (domain,), fetch=True)
+    nmap_results = []
+    if scan_rows:
+        for row in scan_rows:
+            nmap_results.append({
+                "subdomain": row[0],
+                "ip_address": row[1],
+                "hostname": row[2],
+                "open_ports": row[3]
+            })
+    malware = fetch_malware_analysis_from_db(domain) or "No malware analysis available."
+
+    # Retrieve WHOIS data via VT API (or use stored data if available)
+    url = f'https://www.virustotal.com/api/v3/domains/{domain}'
+    headers = {'x-apikey': API_KEY}
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        whois_raw = response.json().get('data', {}).get('attributes', {}).get('whois')
+        whois = {}
+        if whois_raw:
+            for line in whois_raw.split('\n'):
+                if ':' in line:
+                    key, value = line.split(':', 1)
+                    whois[key.strip()] = value.strip()
+    except Exception as e:
+        whois = {"error": str(e)}
+
+    ssl_details = fetch_ssl_details(domain)
+
+    # For threat map, retrieve geodata for subdomains
+    subs_for_threat = fetch_subdomains_from_db(domain)
+    ips = []
+    for sub in subs_for_threat:
+        try:
+            ip = socket.gethostbyname(sub)
+            ips.append(ip)
+        except Exception:
+            pass
+    threat_map = [get_ip_geodata(ip) for ip in set(ips)]
+    threat_map = [item for item in threat_map if item and item.get('coords')]
+
+    # Render the HTML template with the gathered data
+    html_out = render_template("report_template.html", 
+                               domain=domain,
+                               subdomains=subdomains,
+                               nmap_results=nmap_results,
+                               malware=malware,
+                               whois=whois,
+                               ssl=ssl_details,
+                               threat_map=threat_map)
+    pdf = HTML(string=html_out).write_pdf()
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f'attachment; filename=report_{domain}.pdf'
+    return response
 @app.route('/scan/<domain>', methods=['GET'])
 def scan_domain(domain):
     subdomains = fetch_subdomains_from_db(domain)
@@ -183,7 +291,8 @@ def home():
 @app.route('/api/threat-status', methods=['POST'])
 def check_domain_threats():
     domain = request.json.get('domain')
-    threats = get_threat_data(domain)  # Ensure get_threat_data is defined or remove this endpoint if not used
+    # Placeholder since get_threat_data is not defined
+    threats = {}
     threat_results = []
     for subdomain, level in threats.items():
         color = classify_threat(level)
@@ -305,4 +414,5 @@ def get_threat_map(domain):
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
+    init_db()
     app.run(debug=True)
