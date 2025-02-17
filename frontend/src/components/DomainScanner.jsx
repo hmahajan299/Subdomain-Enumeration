@@ -3,10 +3,9 @@ import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps
 import "./DomainScanner.jsx";
 
 const DomainScanner = () => {
-  // State declarations
   const [domain, setDomain] = useState("");
-  const [subdomainResults, setSubdomainResults] = useState([]); // List of subdomains
-  const [nmapResults, setNmapResults] = useState([]); // Array of Nmap scan results
+  const [subdomainResults, setSubdomainResults] = useState([]); // Subdomain list
+  const [nmapResults, setNmapResults] = useState([]); // Nmap scan results
   const [malwareResults, setMalwareResults] = useState("");
   const [whoisResults, setWhoisResults] = useState("");
   const [sslResults, setSslResults] = useState("");
@@ -14,7 +13,7 @@ const DomainScanner = () => {
   const [selectedIp, setSelectedIp] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
-  // Helper: Format object or array results to JSX
+  // Helper: Format results
   const formatResults = (results) => {
     if (Array.isArray(results)) {
       return (
@@ -39,13 +38,40 @@ const DomainScanner = () => {
       return results;
     }
   };
-
+  const generatePDFReport = async () => {
+    if (!validateDomain()) {
+      alert("Please enter a valid domain.");
+      return;
+    }
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/generate-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domain })
+      });
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `report_${domain}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } else {
+        alert("Failed to generate PDF report.");
+      }
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
+  };
+  
   // Input change handler
   const handleInputChange = (e) => {
     setDomain(e.target.value);
   };
 
-  // Basic domain validation
+  // Validate domain
   const validateDomain = () => domain.trim() !== "";
 
   // Fetch subdomain list from /api/subdomains
@@ -64,7 +90,6 @@ const DomainScanner = () => {
       if (data.error) {
         alert(`Error: ${data.error}`);
       } else {
-        // Expecting data: { subdomains: ["sub1.example.com", ...] }
         setSubdomainResults(data.subdomains || []);
       }
     } catch (error) {
@@ -72,31 +97,30 @@ const DomainScanner = () => {
     }
   };
 
-  // Fetch Nmap scan results: first trigger the scan, then fetch stored results.
+  // Fetch Nmap scan results:
+  // 1. Trigger the scan via /scan/<domain>
+  // 2. Then fetch the stored results via /api/scan-results/<domain>
   const fetchNmapResults = async () => {
     if (!validateDomain()) {
       alert("Please enter a valid domain.");
       return;
     }
     try {
-      // Trigger the Nmap scan
+      // Trigger the scan
       const scanResponse = await fetch(`http://127.0.0.1:5000/scan/${domain}`);
       const scanData = await scanResponse.json();
-      console.log("Scan status:", scanData);
-
-      // Now retrieve the stored scan results
+      console.log("Scan trigger response:", scanData);
+      // After triggering, fetch stored scan results
       const res = await fetch(`http://127.0.0.1:5000/api/scan-results/${domain}`);
       const data = await res.json();
       console.log("Nmap scan results received:", data);
       if (data.error) {
         alert(`Error: ${data.error}`);
+      } else if (Array.isArray(data)) {
+        setNmapResults(data);
       } else {
-        if (Array.isArray(data)) {
-          setNmapResults(data);
-        } else {
-          console.error("Unexpected Nmap results format:", data);
-          setNmapResults([]);
-        }
+        console.error("Unexpected Nmap results format:", data);
+        setNmapResults([]);
       }
     } catch (error) {
       console.error("Error fetching Nmap results:", error);
@@ -185,6 +209,8 @@ const DomainScanner = () => {
           onChange={handleInputChange}
         />
         <div className="button-group">
+        <button onClick={generatePDFReport}>Generate PDF Report</button>
+
           <button onClick={fetchSubdomainList}>🔍 Subdomain Scan</button>
           <button onClick={() => fetchData("http://127.0.0.1:5000/api/malware", setMalwareResults, "malware analysis")}>
             🛡 Malware Analysis
@@ -322,6 +348,7 @@ const DomainScanner = () => {
                   </div>
                 </div>
               )}
+              
             </div>
           </div>
         )}
