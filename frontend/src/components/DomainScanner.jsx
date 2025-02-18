@@ -12,6 +12,8 @@ const DomainScanner = () => {
   const [threatMapData, setThreatMapData] = useState([]);
   const [selectedIp, setSelectedIp] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [loadingNmap, setLoadingNmap] = useState(false);
+  const [loadingThreatMap, setLoadingThreatMap] = useState(false);
 
   // Helper: Format results
   const formatResults = (results) => {
@@ -70,7 +72,7 @@ const DomainScanner = () => {
   const handleInputChange = (e) => {
     setDomain(e.target.value);
   };
-
+  
   // Validate domain
   const validateDomain = () => domain.trim() !== "";
 
@@ -97,35 +99,35 @@ const DomainScanner = () => {
     }
   };
 
-  // Fetch Nmap scan results:
-  // 1. Trigger the scan via /scan/<domain>
-  // 2. Then fetch the stored results via /api/scan-results/<domain>
-  const fetchNmapResults = async () => {
-    if (!validateDomain()) {
-      alert("Please enter a valid domain.");
-      return;
-    }
-    try {
-      // Trigger the scan
-      const scanResponse = await fetch(`http://127.0.0.1:5000/scan/${domain}`);
-      const scanData = await scanResponse.json();
-      console.log("Scan trigger response:", scanData);
-      // After triggering, fetch stored scan results
-      const res = await fetch(`http://127.0.0.1:5000/api/scan-results/${domain}`);
-      const data = await res.json();
-      console.log("Nmap scan results received:", data);
-      if (data.error) {
-        alert(`Error: ${data.error}`);
-      } else if (Array.isArray(data)) {
-        setNmapResults(data);
-      } else {
-        console.error("Unexpected Nmap results format:", data);
-        setNmapResults([]);
+    // Fetch Nmap scan results
+    const fetchNmapResults = async () => {
+      if (!validateDomain()) {
+        alert("Please enter a valid domain.");
+        return;
       }
-    } catch (error) {
-      console.error("Error fetching Nmap results:", error);
-    }
-  };
+  
+      setLoadingNmap(true); // Show loading animation
+  
+      try {
+        await fetch(`http://127.0.0.1:5000/scan/${domain}`); // Start the scan
+  
+        // Wait a few seconds before fetching results
+        await new Promise(resolve => setTimeout(resolve, 3000));
+  
+        const res = await fetch(`http://127.0.0.1:5000/api/scan-results/${domain}`);
+        const data = await res.json();
+  
+        if (data.error) {
+          alert(`Error: ${data.error}`);
+        } else {
+          setNmapResults(Array.isArray(data) ? data : []);
+        }
+      } catch (error) {
+        console.error("Error fetching Nmap results:", error);
+      } finally {
+        setLoadingNmap(false); // Hide loading animation
+      }
+    };
 
   // Generic function to fetch data (malware, WHOIS, SSL/TLS)
   const fetchData = async (url, setResult, resultType) => {
@@ -168,6 +170,9 @@ const DomainScanner = () => {
   // Fetch threat map data from /api/threat-map/:domain
   const fetchThreatMap = async () => {
     if (!validateDomain()) return;
+
+    setLoadingThreatMap(true);
+
     try {
       const res = await fetch(`http://127.0.0.1:5000/api/threat-map/${domain}`);
       const data = await res.json();
@@ -175,6 +180,8 @@ const DomainScanner = () => {
     } catch (error) {
       console.error("Error fetching threat map data:", error);
       setThreatMapData([]);
+    } finally {
+      setLoadingThreatMap(false)
     }
   };
 
@@ -199,7 +206,7 @@ const DomainScanner = () => {
           Subdomain Enumeration, Malware Analysis, WHOIS Data, SSL/TLS Check, Threat Map, Nmap Scan
         </p>
       </header>
-
+  
       <div className="input-section">
         <input
           type="text"
@@ -209,23 +216,34 @@ const DomainScanner = () => {
           onChange={handleInputChange}
         />
         <div className="button-group">
-        <button onClick={generatePDFReport}>Generate PDF Report</button>
-
+          <button onClick={generatePDFReport}>Generate PDF Report</button>
           <button onClick={fetchSubdomainList}>🔍 Subdomain Scan</button>
-          <button onClick={() => fetchData("http://127.0.0.1:5000/api/malware", setMalwareResults, "malware analysis")}>
+          <button
+            onClick={() =>
+              fetchData("http://127.0.0.1:5000/api/malware", setMalwareResults, "malware analysis")
+            }
+          >
             🛡 Malware Analysis
           </button>
-          <button onClick={() => fetchData("http://127.0.0.1:5000/api/whois", setWhoisResults, "WHOIS data")}>
+          <button
+            onClick={() =>
+              fetchData("http://127.0.0.1:5000/api/whois", setWhoisResults, "WHOIS data")
+            }
+          >
             🌐 WHOIS Data
           </button>
-          <button onClick={() => fetchData("http://127.0.0.1:5000/api/ssl", setSslResults, "SSL/TLS details")}>
+          <button
+            onClick={() =>
+              fetchData("http://127.0.0.1:5000/api/ssl", setSslResults, "SSL/TLS details")
+            }
+          >
             🔑 SSL/TLS Check
           </button>
           <button onClick={fetchThreatMap}>🌍 Threat Map</button>
           <button onClick={fetchNmapResults}>Scan Subdomains (Nmap)</button>
         </div>
       </div>
-
+  
       <div className="results-section">
         {/* Subdomain List */}
         <div className="result-block">
@@ -242,12 +260,17 @@ const DomainScanner = () => {
             )}
           </div>
         </div>
-
+  
         {/* Nmap Scan Results */}
         <div className="result-block">
-          <h3>Nmap Scan Results for {domain}:</h3>
+          <h3>Nmap Scan Results:</h3>
           <div className="result-content">
-            {nmapResults.length > 0 ? (
+            {loadingNmap ? (
+              <div className="loading-container">
+                <div className="spinner"></div>
+                <p>Running Nmap scan... Please wait!</p>
+              </div>
+            ) : nmapResults.length > 0 ? (
               nmapResults.map((result, idx) => (
                 <div key={idx}>
                   <h4>{result.subdomain}</h4>
@@ -259,8 +282,8 @@ const DomainScanner = () => {
                   </p>
                   <p>
                     <strong>Open Ports:</strong>
-                    <pre>{result.open_ports}</pre>
                   </p>
+                  <pre>{result.open_ports}</pre>
                 </div>
               ))
             ) : (
@@ -268,29 +291,34 @@ const DomainScanner = () => {
             )}
           </div>
         </div>
-
+  
         {/* Malware Analysis */}
         <div className="result-block">
           <h3>Malware Analysis Results:</h3>
           <div className="result-content">{malwareResults || "No results yet."}</div>
         </div>
-
+  
         {/* WHOIS Data */}
         <div className="result-block">
           <h3>WHOIS Data:</h3>
           <div className="result-content">{whoisResults || "No results yet."}</div>
         </div>
-
+  
         {/* SSL/TLS Check */}
         <div className="result-block">
           <h3>SSL/TLS Check:</h3>
           <div className="result-content">{sslResults || "No results yet."}</div>
         </div>
-
+  
         {/* Threat Map */}
-        {threatMapData.length > 0 && (
-          <div className="result-block">
-            <h3>Threat Map:</h3>
+        <div className="result-block">
+          <h3>Threat Map:</h3>
+          {loadingThreatMap ? (
+            <div className="loading-container">
+              <div className="spinner"></div>
+              <p>Fetching threat map data... Please wait!</p>
+            </div>
+          ) : threatMapData.length > 0 ? (
             <div className="map-container">
               <ComposableMap projection="geoMercator">
                 <Geographies geography="/world-map.json">
@@ -329,7 +357,9 @@ const DomainScanner = () => {
                   className="marker-tooltip"
                   style={{ left: tooltipPosition.x + 15, top: tooltipPosition.y - 50 }}
                 >
-                  <div className="tooltip-header">{selectedIp.city || "Unknown Location"}</div>
+                  <div className="tooltip-header">
+                    {selectedIp.city || "Unknown Location"}
+                  </div>
                   <div className="tooltip-row">
                     <span className="tooltip-label">IP:</span>
                     <span className="tooltip-value">{selectedIp.ip}</span>
@@ -340,21 +370,25 @@ const DomainScanner = () => {
                   </div>
                   <div className="tooltip-row">
                     <span className="tooltip-label">Threat Score:</span>
-                    <span className="tooltip-value">{selectedIp.threat_score || 0}/100</span>
+                    <span className="tooltip-value">
+                      {selectedIp.threat_score || 0}/100
+                    </span>
                   </div>
                   <div className="tooltip-row">
                     <span className="tooltip-label">Last Reported:</span>
-                    <span className="tooltip-value">{selectedIp.last_reported || "Never"}</span>
+                    <span className="tooltip-value">
+                      {selectedIp.last_reported || "Never"}
+                    </span>
                   </div>
                 </div>
               )}
-              
             </div>
-          </div>
-        )}
+          ) : (
+            <p>No threat map data available.</p>
+          )}
+        </div>
       </div>
     </div>
   );
 };
-
 export default DomainScanner;
