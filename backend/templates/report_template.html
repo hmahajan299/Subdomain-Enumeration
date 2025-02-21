@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Domain Security Report - {{ domain }}</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        pre {
+            white-space: pre-wrap; /* Allow text to wrap */
+            font-family: monospace;
+        }
+        dl { /* Definition list for WHOIS and SSL */
+            margin-top: 10px;
+        }
+        dt {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        dd {
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Domain Security Report</h1>
+    <h2>Domain: {{ domain }}</h2>
+
+    {% if report.subdomains %}
+    <div class="section">
+        <div class="section-title">Subdomain Scan</div>
+        {% if report.subdomains|length > 0 %}
+        <ul>
+            {% for item in report.subdomains %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No subdomains found.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if report.nmap_results %}
+    <div class="section">
+        <div class="section-title">Nmap Scan</div>
+        {% if report.nmap_results|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Subdomain</th>
+                    <th>IP Address</th>
+                    <th>Hostname</th>
+                    <th>Open Ports</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in report.nmap_results %}
+                <tr>
+                    <td>{{ result.subdomain }}</td>
+                    <td>{{ result.ip_address }}</td>
+                    <td>{{ result.hostname }}</td>
+                    <td><pre>{{ result.open_ports }}</pre></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No Nmap scan results available.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if report.malware_analysis %}
+    <div class="section">
+        <div class="section-title">Malware Analysis</div>
+        {% if report.malware_analysis %}
+        <p>{{ report.malware_analysis }}</p>
+        {% else %}
+        <p>No malware analysis data available.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if report.whois_data %}
+    <div class="section">
+        <div class="section-title">WHOIS Data</div>
+        {% if report.whois_data %}
+        <dl>
+            {% for key, value in report.whois_data.items() %}
+            <dt>{{ key }}</dt>
+            <dd>{{ value }}</dd>
+            {% endfor %}
+        </dl>
+        {% else %}
+        <p>No WHOIS data available.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if report.ssl_details %}
+    <div class="section">
+        <div class="section-title">SSL/TLS Check</div>
+        {% if report.ssl_details %}
+        <dl>
+            {% for key, value in report.ssl_details.items() %}
+            <dt>{{ key }}</dt>
+            <dd>{{ value }}</dd>
+            {% endfor %}
+        </dl>
+        {% else %}
+        <p>No SSL/TLS data available.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if report.threat_map %}
+    <div class="section">
+        <div class="section-title">Threat Map Information</div>
+        {% if report.threat_map|length > 0 %}
+        <ul>
+            {% for item in report.threat_map %}
+            <li>{{ item.ip }} ({{ item.city }}, {{item.country}})</li>  
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No threat map data available.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</body>
+</html>

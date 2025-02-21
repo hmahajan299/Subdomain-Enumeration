@@ -1,0 +1,52 @@
+/* The container for everything in the PDF */
+#pdf-content {
+    background-color: #fff;
+    width: 800px; /* ensures content fits nicely on an A4 page */
+    margin: 20px auto;
+    padding: 20px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  /* Each result block (subdomains, Nmap, WHOIS, etc.) */
+  .result-block {
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background: #fafafa;
+  }
+  
+  /* The heading inside each result block */
+  .result-block h3 {
+    margin-top: 0;
+    background-color: #007bff; /* Choose any accent color */
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px 4px 0 0;
+  }
+  
+  /* The container for the content in each block */
+  .result-content {
+    padding: 10px;
+  }
+  
+  /* Example table styling for structured data (Nmap results, etc.) */
+  .result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .result-table th,
+  .result-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .result-table th {
+    background-color: #f2f2f2;
+  }
+  

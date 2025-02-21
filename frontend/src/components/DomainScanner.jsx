@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import jsPDF from "jspdf";
 import "./DomainScanner.jsx";
+import html2pdf from "html2pdf.js";
 
 const DomainScanner = () => {
   const [domain, setDomain] = useState("");
@@ -14,8 +16,67 @@ const DomainScanner = () => {
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const [loadingNmap, setLoadingNmap] = useState(false);
   const [loadingThreatMap, setLoadingThreatMap] = useState(false);
+  const [loadingReport, setLoadingReport] = useState(false);
 
-  // Helper: Format results
+  const [selectedOptions, setSelectedOptions] = useState({
+    subdomainScan: false,
+    malwareAnalysis: false,
+    whoisData: false,
+    sslTlsCheck: false,
+    threatMap: false,
+    nmapScan: false,
+  });
+
+  // Updated PDF Button Component with improved PDF generation
+  const PDFButton = ({ domain }) => {
+    const handleDownloadPDF = async () => {
+      if (!domain) {
+        alert("Please enter a domain before generating the report.");
+        return;
+      }
+  
+      const pdfContent = document.getElementById("pdf-content");
+      if (!pdfContent) {
+        alert("No content available to generate PDF.");
+        return;
+      }
+  
+      if (pdfContent.innerHTML.trim() === "") {
+        pdfContent.innerHTML =
+          "<div style='text-align: center; padding: 20px;'>No data available.</div>";
+      }
+  
+      // Temporarily remove height and overflow restrictions to capture full content
+      const originalMaxHeight = pdfContent.style.maxHeight;
+      const originalOverflow = pdfContent.style.overflow;
+      pdfContent.style.maxHeight = "none";
+      pdfContent.style.overflow = "visible";
+  
+      // Set html2pdf options for better quality and layout
+      const opt = {
+        margin: 0.5,
+        filename: `${domain}_report.pdf`,
+        image: { type: "jpeg", quality: 1 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+      };
+  
+      try {
+        await html2pdf().set(opt).from(pdfContent).save();
+      } catch (error) {
+        console.error("Error generating PDF:", error);
+        alert("Failed to generate PDF. Please try again.");
+      } finally {
+        // Restore original styles after PDF generation
+        pdfContent.style.maxHeight = originalMaxHeight;
+        pdfContent.style.overflow = originalOverflow;
+      }
+    };
+  
+    return <button onClick={handleDownloadPDF}>📄 Generate PDF Report</button>;
+  };
+
+  // Helper: Format results for display
   const formatResults = (results) => {
     if (Array.isArray(results)) {
       return (
@@ -40,39 +101,12 @@ const DomainScanner = () => {
       return results;
     }
   };
-  const generatePDFReport = async () => {
-    if (!validateDomain()) {
-      alert("Please enter a valid domain.");
-      return;
-    }
-    try {
-      const response = await fetch("http://127.0.0.1:5000/api/generate-report", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain })
-      });
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `report_${domain}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      } else {
-        alert("Failed to generate PDF report.");
-      }
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    }
-  };
-  
+
   // Input change handler
   const handleInputChange = (e) => {
     setDomain(e.target.value);
   };
-  
+
   // Validate domain
   const validateDomain = () => domain.trim() !== "";
 
@@ -99,35 +133,29 @@ const DomainScanner = () => {
     }
   };
 
-    // Fetch Nmap scan results
-    const fetchNmapResults = async () => {
-      if (!validateDomain()) {
-        alert("Please enter a valid domain.");
-        return;
+  // Fetch Nmap scan results
+  const fetchNmapResults = async () => {
+    if (!validateDomain()) {
+      alert("Please enter a valid domain.");
+      return;
+    }
+    setLoadingNmap(true);
+    try {
+      await fetch(`http://127.0.0.1:5000/scan/${domain}`);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      const res = await fetch(`http://127.0.0.1:5000/api/scan-results/${domain}`);
+      const data = await res.json();
+      if (data.error) {
+        alert(`Error: ${data.error}`);
+      } else {
+        setNmapResults(Array.isArray(data) ? data : []);
       }
-  
-      setLoadingNmap(true); // Show loading animation
-  
-      try {
-        await fetch(`http://127.0.0.1:5000/scan/${domain}`); // Start the scan
-  
-        // Wait a few seconds before fetching results
-        await new Promise(resolve => setTimeout(resolve, 3000));
-  
-        const res = await fetch(`http://127.0.0.1:5000/api/scan-results/${domain}`);
-        const data = await res.json();
-  
-        if (data.error) {
-          alert(`Error: ${data.error}`);
-        } else {
-          setNmapResults(Array.isArray(data) ? data : []);
-        }
-      } catch (error) {
-        console.error("Error fetching Nmap results:", error);
-      } finally {
-        setLoadingNmap(false); // Hide loading animation
-      }
-    };
+    } catch (error) {
+      console.error("Error fetching Nmap results:", error);
+    } finally {
+      setLoadingNmap(false);
+    }
+  };
 
   // Generic function to fetch data (malware, WHOIS, SSL/TLS)
   const fetchData = async (url, setResult, resultType) => {
@@ -151,13 +179,13 @@ const DomainScanner = () => {
           setWhoisResults(
             typeof data.whois === "object" && data.whois !== null
               ? formatResults(data.whois)
-              : (data.whois || "No results found.")
+              : data.whois || "No results found."
           );
         } else if (resultType === "SSL/TLS details") {
           setSslResults(
             typeof data.sslDetails === "object" && data.sslDetails !== null
               ? formatResults(data.sslDetails)
-              : (data.sslDetails || "No results found.")
+              : data.sslDetails || "No results found."
           );
         }
       }
@@ -170,9 +198,7 @@ const DomainScanner = () => {
   // Fetch threat map data from /api/threat-map/:domain
   const fetchThreatMap = async () => {
     if (!validateDomain()) return;
-
     setLoadingThreatMap(true);
-
     try {
       const res = await fetch(`http://127.0.0.1:5000/api/threat-map/${domain}`);
       const data = await res.json();
@@ -181,7 +207,7 @@ const DomainScanner = () => {
       console.error("Error fetching threat map data:", error);
       setThreatMapData([]);
     } finally {
-      setLoadingThreatMap(false)
+      setLoadingThreatMap(false);
     }
   };
 
@@ -206,7 +232,7 @@ const DomainScanner = () => {
           Subdomain Enumeration, Malware Analysis, WHOIS Data, SSL/TLS Check, Threat Map, Nmap Scan
         </p>
       </header>
-  
+
       <div className="input-section">
         <input
           type="text"
@@ -216,7 +242,6 @@ const DomainScanner = () => {
           onChange={handleInputChange}
         />
         <div className="button-group">
-          <button onClick={generatePDFReport}>Generate PDF Report</button>
           <button onClick={fetchSubdomainList}>🔍 Subdomain Scan</button>
           <button
             onClick={() =>
@@ -241,10 +266,13 @@ const DomainScanner = () => {
           </button>
           <button onClick={fetchThreatMap}>🌍 Threat Map</button>
           <button onClick={fetchNmapResults}>Scan Subdomains (Nmap)</button>
+          {/* Updated PDF Button */}
+          <PDFButton domain={domain} />
         </div>
       </div>
-  
-      <div className="results-section">
+
+      {/* Wrap the results section in a container with id "pdf-content" */}
+      <div className="results-section" id="pdf-content">
         {/* Subdomain List */}
         <div className="result-block">
           <h3>Subdomain List:</h3>
@@ -260,7 +288,7 @@ const DomainScanner = () => {
             )}
           </div>
         </div>
-  
+
         {/* Nmap Scan Results */}
         <div className="result-block">
           <h3>Nmap Scan Results:</h3>
@@ -291,25 +319,25 @@ const DomainScanner = () => {
             )}
           </div>
         </div>
-  
+
         {/* Malware Analysis */}
         <div className="result-block">
           <h3>Malware Analysis Results:</h3>
           <div className="result-content">{malwareResults || "No results yet."}</div>
         </div>
-  
+
         {/* WHOIS Data */}
         <div className="result-block">
           <h3>WHOIS Data:</h3>
           <div className="result-content">{whoisResults || "No results yet."}</div>
         </div>
-  
+
         {/* SSL/TLS Check */}
         <div className="result-block">
           <h3>SSL/TLS Check:</h3>
           <div className="result-content">{sslResults || "No results yet."}</div>
         </div>
-  
+
         {/* Threat Map */}
         <div className="result-block">
           <h3>Threat Map:</h3>
@@ -391,4 +419,5 @@ const DomainScanner = () => {
     </div>
   );
 };
+
 export default DomainScanner;
