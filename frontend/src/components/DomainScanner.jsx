@@ -17,6 +17,9 @@ const DomainScanner = () => {
   const [loadingNmap, setLoadingNmap] = useState(false);
   const [loadingThreatMap, setLoadingThreatMap] = useState(false);
   const [loadingReport, setLoadingReport] = useState(false);
+  const [cveResults, setCveResults] = useState([]); // CVE scan results
+  const [loadingCve, setLoadingCve] = useState(false); // Loading state for CVE scan
+
 
   const [selectedOptions, setSelectedOptions] = useState({
     subdomainScan: false,
@@ -210,6 +213,37 @@ const DomainScanner = () => {
       setLoadingThreatMap(false);
     }
   };
+   // fetch cve result
+  const fetchCveResults = async () => {
+  if (!validateDomain()) {
+    alert("Please enter a valid domain.");
+    return;
+  }
+  
+  setLoadingCve(true); // Show loading animation
+  try {
+    const res = await fetch("http://127.0.0.1:5000/api/cve-scan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ domain }),
+    });
+
+    const data = await res.json();
+    if (data.error) {
+      alert(`Error: ${data.error}`);
+    } else if (!data.cve_results || data.cve_results.length === 0) {
+      alert("No vulnerabilities found for this domain.");
+    } else {
+      setCveResults(data.cve_results);
+    }
+  } catch (error) {
+    console.error("Error fetching CVE results:", error);
+    alert("An error occurred while fetching CVE data. Please try again.");
+  } finally {
+    setLoadingCve(false); // Hide loading animation
+  }
+};
+
 
   // Hide tooltip on click outside or scroll
   useEffect(() => {
@@ -266,6 +300,8 @@ const DomainScanner = () => {
           </button>
           <button onClick={fetchThreatMap}>🌍 Threat Map</button>
           <button onClick={fetchNmapResults}>Scan Subdomains (Nmap)</button>
+          <button onClick={fetchCveResults}>🛠 CVE Scan</button>
+    
           {/* Updated PDF Button */}
           <PDFButton domain={domain} />
         </div>
@@ -337,6 +373,39 @@ const DomainScanner = () => {
           <h3>SSL/TLS Check:</h3>
           <div className="result-content">{sslResults || "No results yet."}</div>
         </div>
+	
+	{/* CVE Report */}
+	<div className="result-block">
+	  <h3>CVE Scan Results:</h3>
+	  <div className="result-content">
+	    {cveResults.length > 0 ? (
+	      <table className="cve-table">
+		<thead>
+		  <tr>
+		    <th>CVE ID</th>
+		    <th>Affected Service</th>
+		    <th>Severity</th>
+		    <th>Description</th>
+		    <th>Reference</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  {cveResults.map((cve, idx) => (
+		    <tr key={idx}>
+		      <td>{cve.id}</td>
+		      <td>{cve.service}</td>
+		      <td>{cve.severity}</td>
+		      <td>{cve.description}</td>
+		      <td><a href={cve.link} target="_blank" rel="noopener noreferrer">View</a></td>
+		    </tr>
+		  ))}
+		</tbody>
+	      </table>
+	    ) : (
+	      "No vulnerabilities found."
+	    )}
+	  </div>
+	</div>
 
         {/* Threat Map */}
         <div className="result-block">

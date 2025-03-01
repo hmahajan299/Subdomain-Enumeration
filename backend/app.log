@@ -1,0 +1,862 @@
+2025-02-28 01:19:11,182 - WARNING -  * Debugger is active!
+2025-02-28 01:19:11,183 - INFO -  * Debugger PIN: 130-044-271
+2025-02-28 01:19:49,762 - INFO -  * Detected change in '/home/kali/Desktop/Project/Subdomain-Enumeration/backend/app.py', reloading
+2025-02-28 01:19:52,592 - WARNING -  * Debugger is active!
+2025-02-28 01:19:52,592 - INFO -  * Debugger PIN: 130-044-271
+2025-02-28 01:19:58,861 - INFO - 127.0.0.1 - - [28/Feb/2025 01:19:58] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:20:00,230 - ERROR - Error fetching CVE data for 443/tcp open  ssl/http nginx: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:01,544 - ERROR - Error fetching CVE data for 80/tcp  open  http-proxy HAProxy http proxy 1.3.1 or later: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http-proxy&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:04,648 - ERROR - Error fetching CVE data for 443/tcp open  ssl/http   nginx 1.23.1: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:06,082 - ERROR - Error fetching CVE data for 80/tcp  open  tcpwrapped: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=tcpwrapped&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:07,430 - ERROR - Error fetching CVE data for 443/tcp open  tcpwrapped: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=tcpwrapped&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:08,715 - ERROR - Error fetching CVE data for 443/tcp open  tcpwrapped: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=tcpwrapped&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:10,112 - ERROR - Error fetching CVE data for 80/tcp  open  http-proxy HAProxy http proxy 1.3.1 - 1.9.0: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http-proxy&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:11,544 - ERROR - Error fetching CVE data for 443/tcp open  ssl/http   nginx 1.23.1: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:20:11,547 - INFO - 127.0.0.1 - - [28/Feb/2025 01:20:11] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:20:38,600 - INFO - 127.0.0.1 - - [28/Feb/2025 01:20:38] "GET /api/threat-map/bisag-n.gov.in HTTP/1.1" 200 -
+2025-02-28 01:21:03,564 - INFO - 127.0.0.1 - - [28/Feb/2025 01:21:03] "GET /scan/bisag-n.gov.in HTTP/1.1" 200 -
+2025-02-28 01:21:06,618 - INFO - 127.0.0.1 - - [28/Feb/2025 01:21:06] "GET /api/scan-results/bisag-n.gov.in HTTP/1.1" 200 -
+2025-02-28 01:21:45,677 - INFO - 127.0.0.1 - - [28/Feb/2025 01:21:45] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:21:47,090 - ERROR - Error fetching CVE data for 443/tcp open  ssl/http nginx: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:48,214 - ERROR - Error fetching CVE data for 80/tcp  open  http-proxy HAProxy http proxy 1.3.1 or later: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http-proxy&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:49,473 - ERROR - Error fetching CVE data for 443/tcp open  ssl/http   nginx 1.23.1: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:50,523 - ERROR - Error fetching CVE data for 80/tcp  open  tcpwrapped: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=tcpwrapped&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:51,560 - ERROR - Error fetching CVE data for 443/tcp open  tcpwrapped: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=tcpwrapped&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:52,545 - ERROR - Error fetching CVE data for 443/tcp open  tcpwrapped: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=tcpwrapped&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:53,633 - ERROR - Error fetching CVE data for 80/tcp  open  http-proxy HAProxy http proxy 1.3.1 - 1.9.0: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http-proxy&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:54,776 - ERROR - Error fetching CVE data for 443/tcp open  ssl/http   nginx 1.23.1: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:21:54,785 - INFO - 127.0.0.1 - - [28/Feb/2025 01:21:54] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:22:06,174 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:06] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:22:06,196 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:06] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:22:13,754 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:13] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:22:13,777 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:13] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:22:14,801 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:14] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:22:15,734 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:15] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:22:15,872 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:15] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:22:15,980 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:15] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:22:24,656 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:24] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:22:24,693 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:24] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:22:42,179 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:42] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:22:42,208 - INFO - 127.0.0.1 - - [28/Feb/2025 01:22:42] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:23:40,459 - INFO - 127.0.0.1 - - [28/Feb/2025 01:23:40] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:23:40,504 - INFO - 127.0.0.1 - - [28/Feb/2025 01:23:40] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:26:36,483 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:36] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:26:36,515 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:36] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:26:38,032 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:38] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:26:38,056 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:38] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:26:38,944 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:38] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:26:39,668 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:39] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:26:40,028 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:40] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:26:40,315 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:40] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:26:42,856 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:42] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:26:42,879 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:42] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:26:46,547 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:46] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:26:47,850 - INFO - 127.0.0.1 - - [28/Feb/2025 01:26:47] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:27:04,895 - INFO - 127.0.0.1 - - [28/Feb/2025 01:27:04] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:27:04,929 - INFO - 127.0.0.1 - - [28/Feb/2025 01:27:04] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:28:34,764 - INFO - 127.0.0.1 - - [28/Feb/2025 01:28:34] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:28:34,995 - INFO - 127.0.0.1 - - [28/Feb/2025 01:28:34] "[35m[1mPOST /api/subdomains HTTP/1.1[0m" 500 -
+2025-02-28 01:28:39,656 - INFO - 127.0.0.1 - - [28/Feb/2025 01:28:39] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:28:39,722 - INFO - 127.0.0.1 - - [28/Feb/2025 01:28:39] "[35m[1mPOST /api/subdomains HTTP/1.1[0m" 500 -
+2025-02-28 01:29:06,360 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:06] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:29:06,407 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:06] "[35m[1mPOST /api/subdomains HTTP/1.1[0m" 500 -
+2025-02-28 01:29:08,628 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:08] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:29:08,655 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:08] "[35m[1mPOST /api/subdomains HTTP/1.1[0m" 500 -
+2025-02-28 01:29:09,840 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:09] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:29:10,536 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:10] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:29:14,720 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:14] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:29:15,403 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:15] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:29:19,569 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:19] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:29:24,981 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:24] "GET /api/threat-map/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:29:27,723 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:27] "GET /api/threat-map/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:29:28,570 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:28] "GET /api/threat-map/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:29:29,855 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:29] "[33mGET /scan/testphp.vulnweb.com HTTP/1.1[0m" 404 -
+2025-02-28 01:29:32,992 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:32] "GET /api/scan-results/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:29:35,484 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:35] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:29:35,517 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:35] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:29:38,978 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:38] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:29:41,228 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:41] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:29:44,826 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:44] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:29:44,969 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:44] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:29:45,027 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:45] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:29:47,420 - INFO - 127.0.0.1 - - [28/Feb/2025 01:29:47] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:30:08,490 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:08] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:30:19,660 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:19] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:30:19,736 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:19] "[35m[1mPOST /api/subdomains HTTP/1.1[0m" 500 -
+2025-02-28 01:30:22,772 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:22] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:30:22,921 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:22] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:30:24,532 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:24] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:30:25,298 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:25] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:30:26,132 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:26] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:30:27,474 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:27] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:30:29,020 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:29] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:30:29,662 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:29] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:30:30,471 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:30] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:30:34,938 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:34] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:30:34,973 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:34] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:30:37,827 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:37] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:30:38,156 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:38] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:30:38,360 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:38] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:30:39,318 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:39] "[33mGET /scan/bodgeitstore.com HTTP/1.1[0m" 404 -
+2025-02-28 01:30:40,207 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:40] "GET /api/threat-map/bodgeitstore.com HTTP/1.1" 200 -
+2025-02-28 01:30:42,659 - INFO - 127.0.0.1 - - [28/Feb/2025 01:30:42] "GET /api/scan-results/bodgeitstore.com HTTP/1.1" 200 -
+2025-02-28 01:39:21,443 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-28 01:39:21,453 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-28 01:39:21,478 - INFO -  * Restarting with stat
+2025-02-28 01:39:22,568 - WARNING -  * Debugger is active!
+2025-02-28 01:39:22,569 - INFO -  * Debugger PIN: 553-530-177
+2025-02-28 01:41:04,610 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:04] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:41:08,009 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:08] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:41:08,037 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:08] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:41:08,909 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:08] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:41:10,246 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:10] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:41:10,648 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:10] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:41:10,825 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:10] "GET /api/threat-map/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:41:11,521 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:11] "[33mGET /scan/testphp.vulnweb.com HTTP/1.1[0m" 404 -
+2025-02-28 01:41:14,866 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:14] "GET /api/scan-results/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:41:15,496 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:15] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:41:21,559 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:21] "GET /scan/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:41:24,611 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:24] "GET /api/scan-results/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:41:28,789 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:28] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:41:28,821 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:28] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:41:31,402 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:31] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:41:33,322 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:33] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:41:33,967 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:33] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:41:33,991 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:33] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:41:36,072 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:36] "GET /scan/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:41:39,128 - INFO - 127.0.0.1 - - [28/Feb/2025 01:41:39] "GET /api/scan-results/testphp.vulnweb.com HTTP/1.1" 200 -
+2025-02-28 01:42:00,870 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:00] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:03,919 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:03] "[33mGET /scan/bodgeitstore.com HTTP/1.1[0m" 404 -
+2025-02-28 01:42:04,096 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:04] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:07,114 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:07] "GET /api/scan-results/bodgeitstore.com HTTP/1.1" 200 -
+2025-02-28 01:42:08,737 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:08] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:11,082 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:11] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:42:11,129 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:11] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:42:11,923 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:11] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:42:12,083 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:12] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:12,126 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:12] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:42:13,277 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:13] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:42:13,917 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:13] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:42:15,265 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:15] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:42:15,511 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:15] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 01:42:17,054 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:17] "GET /api/threat-map/bodgeitstore.com HTTP/1.1" 200 -
+2025-02-28 01:42:17,978 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:17] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:42:18,000 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:18] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:42:20,607 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:20] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:42:21,477 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:21] "[33mGET /scan/bodgeitstore.com HTTP/1.1[0m" 404 -
+2025-02-28 01:42:24,808 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:24] "GET /api/scan-results/bodgeitstore.com HTTP/1.1" 200 -
+2025-02-28 01:42:47,298 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:47] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:47,322 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:47] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:53,423 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:53] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:53,440 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:53] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:42:54,607 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:54] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:42:54,626 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:54] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:42:58,761 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:58] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:42:59,634 - INFO - 127.0.0.1 - - [28/Feb/2025 01:42:59] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:43:19,753 - INFO - 127.0.0.1 - - [28/Feb/2025 01:43:19] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:43:19,789 - INFO - 127.0.0.1 - - [28/Feb/2025 01:43:19] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:43:26,276 - INFO - 127.0.0.1 - - [28/Feb/2025 01:43:26] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:43:26,319 - INFO - 127.0.0.1 - - [28/Feb/2025 01:43:26] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:43:31,196 - INFO - 127.0.0.1 - - [28/Feb/2025 01:43:31] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:43:31,563 - INFO - 127.0.0.1 - - [28/Feb/2025 01:43:31] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:44:22,902 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-28 01:44:22,902 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-28 01:44:22,904 - INFO -  * Restarting with stat
+2025-02-28 01:44:23,947 - WARNING -  * Debugger is active!
+2025-02-28 01:44:23,949 - INFO -  * Debugger PIN: 553-530-177
+2025-02-28 01:46:41,658 - INFO - 127.0.0.1 - - [28/Feb/2025 01:46:41] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:46:41,703 - INFO - 127.0.0.1 - - [28/Feb/2025 01:46:41] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:46:52,256 - INFO - 127.0.0.1 - - [28/Feb/2025 01:46:52] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:46:52,318 - INFO - 127.0.0.1 - - [28/Feb/2025 01:46:52] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:46:55,915 - INFO - 127.0.0.1 - - [28/Feb/2025 01:46:55] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:46:55,945 - INFO - 127.0.0.1 - - [28/Feb/2025 01:46:55] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:47:44,841 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:44] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:47:44,901 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:44] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:47:48,093 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:48] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:47:48,121 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:48] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:47:51,290 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:51] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:47:52,188 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:52] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:47:55,659 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:55] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:47:56,259 - INFO - 127.0.0.1 - - [28/Feb/2025 01:47:56] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:48:00,777 - INFO - 127.0.0.1 - - [28/Feb/2025 01:48:00] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:48:21,036 - INFO - 127.0.0.1 - - [28/Feb/2025 01:48:21] "GET /api/threat-map/bbc.com HTTP/1.1" 200 -
+2025-02-28 01:53:10,974 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-28 01:53:10,974 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-28 01:53:10,976 - INFO -  * Restarting with stat
+2025-02-28 01:53:12,666 - WARNING -  * Debugger is active!
+2025-02-28 01:53:12,667 - INFO -  * Debugger PIN: 553-530-177
+2025-02-28 01:55:07,019 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:07] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:55:08,976 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:08] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:55:09,178 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:09] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:55:13,780 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:13] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:55:27,256 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:27] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 01:55:27,335 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:27] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 01:55:29,059 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:29] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 01:55:29,846 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:29] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:55:30,047 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:30] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 01:55:30,403 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:30] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 01:55:33,325 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:33] "GET /api/threat-map/youtube.com HTTP/1.1" 200 -
+2025-02-28 01:55:38,345 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:38] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:55:38,388 - INFO - 127.0.0.1 - - [28/Feb/2025 01:55:38] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:57:09,132 - INFO - 127.0.0.1 - - [28/Feb/2025 01:57:09] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:57:11,009 - INFO - 127.0.0.1 - - [28/Feb/2025 01:57:11] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:57:11,074 - INFO - 127.0.0.1 - - [28/Feb/2025 01:57:11] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:57:11,628 - INFO - 127.0.0.1 - - [28/Feb/2025 01:57:11] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 01:57:30,806 - INFO - 127.0.0.1 - - [28/Feb/2025 01:57:30] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:57:32,774 - ERROR - Error fetching CVE data for 80/tcp  open  http      gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:57:33,830 - ERROR - Error fetching CVE data for 443/tcp open  ssl/https gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/https&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:57:33,831 - INFO - 127.0.0.1 - - [28/Feb/2025 01:57:33] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:58:16,984 - INFO - 127.0.0.1 - - [28/Feb/2025 01:58:16] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:58:21,525 - ERROR - Error fetching CVE data for 80/tcp  open  http      gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:58:22,523 - ERROR - Error fetching CVE data for 443/tcp open  ssl/https gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/https&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:58:22,525 - INFO - 127.0.0.1 - - [28/Feb/2025 01:58:22] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:59:00,104 - INFO - 127.0.0.1 - - [28/Feb/2025 01:59:00] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 01:59:01,463 - ERROR - Error fetching CVE data for 80/tcp  open  http      gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:59:02,950 - ERROR - Error fetching CVE data for 443/tcp open  ssl/https gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl/https&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 01:59:02,952 - INFO - 127.0.0.1 - - [28/Feb/2025 01:59:02] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 02:02:52,561 - INFO -  * Detected change in '/home/kali/Desktop/Project/Subdomain-Enumeration/backend/app.py', reloading
+2025-02-28 02:02:53,186 - INFO -  * Restarting with stat
+2025-02-28 02:02:54,607 - WARNING -  * Debugger is active!
+2025-02-28 02:02:54,608 - INFO -  * Debugger PIN: 553-530-177
+2025-02-28 02:06:42,198 - INFO -  * Detected change in '/home/kali/Desktop/Project/Subdomain-Enumeration/backend/app.py', reloading
+2025-02-28 02:06:42,767 - INFO -  * Restarting with stat
+2025-02-28 02:06:45,136 - WARNING -  * Debugger is active!
+2025-02-28 02:06:45,137 - INFO -  * Debugger PIN: 553-530-177
+2025-02-28 02:10:35,546 - INFO -  * Detected change in '/home/kali/Desktop/Project/Subdomain-Enumeration/backend/app.py', reloading
+2025-02-28 02:10:36,020 - INFO -  * Restarting with stat
+2025-02-28 02:11:05,236 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-28 02:11:05,237 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-28 02:11:05,238 - INFO -  * Restarting with stat
+2025-02-28 02:11:06,400 - WARNING -  * Debugger is active!
+2025-02-28 02:11:06,401 - INFO -  * Debugger PIN: 553-530-177
+2025-02-28 02:11:45,290 - INFO - 127.0.0.1 - - [28/Feb/2025 02:11:45] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 02:11:45,326 - INFO - 127.0.0.1 - - [28/Feb/2025 02:11:45] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 02:12:47,673 - INFO - 127.0.0.1 - - [28/Feb/2025 02:12:47] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 02:12:47,750 - INFO - 127.0.0.1 - - [28/Feb/2025 02:12:47] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 02:12:51,079 - INFO - 127.0.0.1 - - [28/Feb/2025 02:12:51] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 02:12:56,636 - INFO - 127.0.0.1 - - [28/Feb/2025 02:12:56] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 02:12:58,796 - INFO - 127.0.0.1 - - [28/Feb/2025 02:12:58] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 02:12:59,242 - INFO - 127.0.0.1 - - [28/Feb/2025 02:12:59] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 02:13:02,411 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:02] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 02:13:04,686 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:04] "GET /api/threat-map/youtube.com HTTP/1.1" 200 -
+2025-02-28 02:13:05,425 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:05] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 02:13:06,992 - ERROR - Error fetching CVE data for 80/tcp  open  http      gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 02:13:08,516 - ERROR - Error fetching CVE data for 443/tcp open  ssl/https gws: 404 Client Error: Not Found for url: https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=ssl&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f
+2025-02-28 02:13:08,518 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:08] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 02:13:46,746 - ERROR - Error resolving alt0058489.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:46,749 - INFO - Nmap scan for alt0058489.youtube.com: IP=Unknown, Ports=80/tcp  open  tcpwrapped
+443/tcp open  tcpwrapped
+2025-02-28 02:13:46,962 - ERROR - Error resolving alt05.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:46,962 - INFO - Nmap scan for alt05.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:47,267 - ERROR - Error resolving alt009602.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:47,268 - INFO - Nmap scan for alt009602.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:47,479 - ERROR - Error resolving alt0004597670.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:47,480 - INFO - Nmap scan for alt0004597670.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:47,875 - ERROR - Error resolving alt0058946911.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:47,875 - INFO - Nmap scan for alt0058946911.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:47,947 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:47] "GET /scan/youtube.com HTTP/1.1" 200 -
+2025-02-28 02:13:51,002 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:51] "GET /api/scan-results/youtube.com HTTP/1.1" 200 -
+2025-02-28 02:13:51,994 - ERROR - Error resolving alt0058489.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:51,994 - INFO - Nmap scan for alt0058489.youtube.com: IP=Unknown, Ports=80/tcp  open  tcpwrapped
+443/tcp open  tcpwrapped
+2025-02-28 02:13:52,309 - ERROR - Error resolving alt05.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:52,309 - INFO - Nmap scan for alt05.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:52,554 - ERROR - Error resolving alt009602.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:52,554 - INFO - Nmap scan for alt009602.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:52,750 - ERROR - Error resolving alt0004597670.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:52,750 - INFO - Nmap scan for alt0004597670.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:52,894 - ERROR - Error resolving alt0058946911.youtube.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 02:13:52,895 - INFO - Nmap scan for alt0058946911.youtube.com: IP=Unknown, Ports=
+2025-02-28 02:13:52,905 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:52] "GET /scan/youtube.com HTTP/1.1" 200 -
+2025-02-28 02:13:55,922 - INFO - 127.0.0.1 - - [28/Feb/2025 02:13:55] "GET /api/scan-results/youtube.com HTTP/1.1" 200 -
+2025-02-28 02:26:55,387 - INFO - 127.0.0.1 - - [28/Feb/2025 02:26:55] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 02:26:55,541 - ERROR - Error fetching CVE data for 80/tcp  open  http      gws: HTTPSConnectionPool(host='services.nvd.nist.gov', port=443): Max retries exceeded with url: /rest/json/cves/1.0?keyword=http&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fa7b128e780>: Failed to resolve 'services.nvd.nist.gov' ([Errno -3] Temporary failure in name resolution)"))
+2025-02-28 02:26:55,608 - ERROR - Error fetching CVE data for 443/tcp open  ssl/https gws: HTTPSConnectionPool(host='services.nvd.nist.gov', port=443): Max retries exceeded with url: /rest/json/cves/1.0?keyword=ssl&apiKey=9961cbb9-d755-4d00-a92e-13f55d064c5f (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fa7b12983b0>: Failed to resolve 'services.nvd.nist.gov' ([Errno -3] Temporary failure in name resolution)"))
+2025-02-28 02:26:55,612 - INFO - 127.0.0.1 - - [28/Feb/2025 02:26:55] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 03:55:36,726 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-28 03:55:36,744 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-28 03:55:36,746 - INFO -  * Restarting with stat
+2025-02-28 03:55:38,141 - WARNING -  * Debugger is active!
+2025-02-28 03:55:38,143 - INFO -  * Debugger PIN: 553-530-177
+2025-02-28 03:56:35,109 - INFO - 127.0.0.1 - - [28/Feb/2025 03:56:35] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:56:41,095 - INFO - 127.0.0.1 - - [28/Feb/2025 03:56:41] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:56:44,900 - INFO - 127.0.0.1 - - [28/Feb/2025 03:56:44] "[33mGET /scan/x.com HTTP/1.1[0m" 404 -
+2025-02-28 03:56:48,142 - INFO - 127.0.0.1 - - [28/Feb/2025 03:56:48] "GET /api/scan-results/x.com HTTP/1.1" 200 -
+2025-02-28 03:57:02,336 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:02] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:57:07,522 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:07] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:57:38,977 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:38] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:57:39,070 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:39] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:57:46,969 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:46] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:57:47,125 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:47] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:57:53,499 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:53] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 03:57:54,500 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:54] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 03:57:56,094 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:56] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 03:57:57,542 - INFO - 127.0.0.1 - - [28/Feb/2025 03:57:57] "POST /api/whois HTTP/1.1" 200 -
+2025-02-28 03:58:03,539 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:03] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 03:58:04,001 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:04] "POST /api/ssl HTTP/1.1" 200 -
+2025-02-28 03:58:13,594 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:13] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:58:13,743 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:13] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 03:58:20,843 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:20] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 03:58:20,880 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:20] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 03:58:58,485 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:58] "GET /api/threat-map/x.com HTTP/1.1" 200 -
+2025-02-28 03:58:59,209 - INFO - 127.0.0.1 - - [28/Feb/2025 03:58:59] "GET /api/threat-map/x.com HTTP/1.1" 200 -
+2025-02-28 03:59:26,540 - INFO - 127.0.0.1 - - [28/Feb/2025 03:59:26] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 03:59:26,562 - INFO - 127.0.0.1 - - [28/Feb/2025 03:59:26] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:01:54,944 - INFO - 127.0.0.1 - - [28/Feb/2025 04:01:54] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:01:54,988 - INFO - 127.0.0.1 - - [28/Feb/2025 04:01:54] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:01:56,679 - INFO - 127.0.0.1 - - [28/Feb/2025 04:01:56] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:01:57,252 - INFO - 127.0.0.1 - - [28/Feb/2025 04:01:57] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:01:57,461 - INFO - 127.0.0.1 - - [28/Feb/2025 04:01:57] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:02:23,796 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:23] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 04:02:23,960 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:23] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 04:02:25,013 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:25] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 04:02:28,152 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:28] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 04:02:28,255 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:28] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 04:02:31,651 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:31] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 04:02:31,716 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:31] "[35m[1mPOST /api/whois HTTP/1.1[0m" 500 -
+2025-02-28 04:02:36,565 - ERROR - Error resolving pro.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:36,567 - INFO - Nmap scan for pro.x.com: IP=Unknown, Ports=80/tcp  open  tcpwrapped
+443/tcp open  tcpwrapped
+2025-02-28 04:02:36,987 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:36] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 04:02:36,995 - ERROR - Error resolving tdapi.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:36,995 - INFO - Nmap scan for tdapi.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:37,070 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:37] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 04:02:37,175 - ERROR - Error resolving payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:37,175 - INFO - Nmap scan for payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:37,475 - ERROR - Error resolving webhooks.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:37,475 - INFO - Nmap scan for webhooks.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:37,855 - ERROR - Error resolving payments.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:37,856 - INFO - Nmap scan for payments.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:38,020 - ERROR - Error resolving mail01.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:38,020 - INFO - Nmap scan for mail01.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:38,202 - ERROR - Error resolving ads.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:38,202 - INFO - Nmap scan for ads.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:38,572 - ERROR - Error resolving studio.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:38,572 - INFO - Nmap scan for studio.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:38,866 - ERROR - Error resolving mobile-api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:38,866 - INFO - Nmap scan for mobile-api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:39,107 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:39] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-02-28 04:02:39,149 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:39] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 04:02:39,207 - ERROR - Error resolving blog-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:39,207 - INFO - Nmap scan for blog-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:39,420 - ERROR - Error resolving marketing.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:39,420 - INFO - Nmap scan for marketing.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:39,616 - ERROR - Error resolving gdpr.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:39,616 - INFO - Nmap scan for gdpr.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:39,899 - ERROR - Error resolving upload.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:39,900 - INFO - Nmap scan for upload.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:40,188 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:40] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 04:02:40,228 - ERROR - Error resolving web-api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:40,228 - INFO - Nmap scan for web-api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:40,487 - ERROR - Error resolving dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:40,487 - INFO - Nmap scan for dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:40,573 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:40] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 04:02:40,721 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:40] "POST /api/malware HTTP/1.1" 200 -
+2025-02-28 04:02:40,749 - ERROR - Error resolving www.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:40,749 - INFO - Nmap scan for www.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:41,219 - ERROR - Error resolving payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:41,219 - INFO - Nmap scan for payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:41,693 - ERROR - Error resolving docs.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:41,695 - INFO - Nmap scan for docs.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:42,092 - ERROR - Error resolving webhooks.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:42,093 - INFO - Nmap scan for webhooks.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:42,366 - ERROR - Error resolving tweetdeck.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:42,370 - INFO - Nmap scan for tweetdeck.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:43,175 - ERROR - Error resolving jf.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:43,175 - INFO - Nmap scan for jf.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:43,566 - ERROR - Error resolving api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:43,567 - INFO - Nmap scan for api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:43,993 - ERROR - Error resolving wz.dev.unute.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:43,995 - INFO - Nmap scan for wz.dev.unute.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:44,522 - ERROR - Error resolving mx3.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:44,524 - INFO - Nmap scan for mx3.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:45,241 - ERROR - Error resolving webhooks.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:45,241 - INFO - Nmap scan for webhooks.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:46,074 - ERROR - Error resolving td.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:46,080 - INFO - Nmap scan for td.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:47,149 - ERROR - Error resolving careers.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:47,160 - INFO - Nmap scan for careers.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:48,108 - ERROR - Error resolving analytics.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:48,108 - INFO - Nmap scan for analytics.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:48,849 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:48] "[33mGET /scan/x.com HTTP/1.1[0m" 404 -
+2025-02-28 04:02:48,967 - ERROR - Error resolving mobile.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:48,969 - INFO - Nmap scan for mobile.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:50,207 - ERROR - Error resolving api-stream.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:50,208 - INFO - Nmap scan for api-stream.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:51,086 - ERROR - Error resolving probe-t.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:51,088 - INFO - Nmap scan for probe-t.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:52,099 - ERROR - Error resolving transparency.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:52,100 - INFO - Nmap scan for transparency.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:52,306 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:52] "GET /api/scan-results/x.com HTTP/1.1" 200 -
+2025-02-28 04:02:52,619 - ERROR - Error resolving tpop-api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:52,619 - INFO - Nmap scan for tpop-api.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:53,545 - ERROR - Error resolving partners.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:53,545 - INFO - Nmap scan for partners.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:53,898 - INFO - 127.0.0.1 - - [28/Feb/2025 04:02:53] "GET /api/threat-map/x.com HTTP/1.1" 200 -
+2025-02-28 04:02:54,371 - ERROR - Error resolving m.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:54,372 - INFO - Nmap scan for m.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:54,924 - ERROR - Error resolving aa.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:54,939 - INFO - Nmap scan for aa.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:55,468 - ERROR - Error resolving x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:55,473 - INFO - Nmap scan for x.com: IP=Unknown, Ports=
+2025-02-28 04:02:56,241 - ERROR - Error resolving payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:56,241 - INFO - Nmap scan for payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:56,799 - ERROR - Error resolving syndication.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:56,802 - INFO - Nmap scan for syndication.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:56,958 - ERROR - Error resolving caps.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:56,958 - INFO - Nmap scan for caps.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:57,465 - ERROR - Error resolving ads-api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:57,466 - INFO - Nmap scan for ads-api.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:57,749 - ERROR - Error resolving sdn.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:57,750 - INFO - Nmap scan for sdn.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:57,911 - ERROR - Error resolving api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:57,912 - INFO - Nmap scan for api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:58,282 - ERROR - Error resolving ton.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:58,282 - INFO - Nmap scan for ton.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:58,824 - ERROR - Error resolving blog.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:58,825 - INFO - Nmap scan for blog.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:58,978 - ERROR - Error resolving business.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:58,979 - INFO - Nmap scan for business.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:59,641 - ERROR - Error resolving cdn.syndication.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:59,642 - INFO - Nmap scan for cdn.syndication.x.com: IP=Unknown, Ports=
+2025-02-28 04:02:59,812 - ERROR - Error resolving mobile-api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:02:59,812 - INFO - Nmap scan for mobile-api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:00,040 - ERROR - Error resolving wr.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:00,041 - INFO - Nmap scan for wr.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:00,217 - ERROR - Error resolving cards-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:00,217 - INFO - Nmap scan for cards-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:00,391 - ERROR - Error resolving support.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:00,391 - INFO - Nmap scan for support.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:00,559 - ERROR - Error resolving livecampaign-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:00,559 - INFO - Nmap scan for livecampaign-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:00,737 - ERROR - Error resolving cards.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:00,737 - INFO - Nmap scan for cards.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:00,946 - ERROR - Error resolving apps.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:00,950 - INFO - Nmap scan for apps.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:01,222 - ERROR - Error resolving verified.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:01,223 - INFO - Nmap scan for verified.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:01,361 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:01] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:03:01,408 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:01] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:03:01,487 - ERROR - Error resolving web-api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:01,488 - INFO - Nmap scan for web-api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:01,703 - ERROR - Error resolving shop.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:01,704 - INFO - Nmap scan for shop.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:02,280 - ERROR - Error resolving privacy.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:02,281 - INFO - Nmap scan for privacy.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:02,583 - ERROR - Error resolving pic.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:02,584 - INFO - Nmap scan for pic.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:02,732 - ERROR - Error resolving sdn.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:02,732 - INFO - Nmap scan for sdn.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:02,882 - ERROR - Error resolving mx4.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:02,883 - INFO - Nmap scan for mx4.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:03,064 - ERROR - Error resolving legal.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:03,064 - INFO - Nmap scan for legal.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:03,238 - ERROR - Error resolving about.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:03,239 - INFO - Nmap scan for about.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:03,408 - ERROR - Error resolving developer.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:03,408 - INFO - Nmap scan for developer.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:03,652 - ERROR - Error resolving platform.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:03,653 - INFO - Nmap scan for platform.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:03,846 - ERROR - Error resolving devcommunity.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:03,847 - INFO - Nmap scan for devcommunity.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:04,105 - ERROR - Error resolving help.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:04,110 - INFO - Nmap scan for help.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:04,274 - ERROR - Error resolving publish.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:04,274 - INFO - Nmap scan for publish.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:04,853 - ERROR - Error resolving api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:04,854 - INFO - Nmap scan for api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:05,023 - ERROR - Error resolving api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:05,024 - INFO - Nmap scan for api.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:05,473 - ERROR - Error resolving www.shop.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:05,473 - INFO - Nmap scan for www.shop.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:05,741 - ERROR - Error resolving mobile-api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:05,742 - INFO - Nmap scan for mobile-api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:06,102 - ERROR - Error resolving jf-t.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:06,105 - INFO - Nmap scan for jf-t.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:06,381 - ERROR - Error resolving web-api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:06,383 - INFO - Nmap scan for web-api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:06,587 - ERROR - Error resolving sdn.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:06,588 - INFO - Nmap scan for sdn.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:06,750 - ERROR - Error resolving create.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:06,751 - INFO - Nmap scan for create.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:06,907 - ERROR - Error resolving preferencecenter.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:06,907 - INFO - Nmap scan for preferencecenter.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:07,136 - ERROR - Error resolving probe.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:07,137 - INFO - Nmap scan for probe.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:07,364 - ERROR - Error resolving cards.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:07,365 - INFO - Nmap scan for cards.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:07,641 - ERROR - Error resolving m.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:07,642 - INFO - Nmap scan for m.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:07,920 - ERROR - Error resolving web-api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:07,920 - INFO - Nmap scan for web-api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:08,067 - ERROR - Error resolving syndication.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:08,067 - INFO - Nmap scan for syndication.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:08,215 - ERROR - Error resolving transparency.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:08,215 - INFO - Nmap scan for transparency.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:08,358 - ERROR - Error resolving privacy.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:08,358 - INFO - Nmap scan for privacy.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:08,522 - ERROR - Error resolving apps.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:08,523 - INFO - Nmap scan for apps.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:08,695 - ERROR - Error resolving upload.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:08,696 - INFO - Nmap scan for upload.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:08,845 - ERROR - Error resolving webhooks.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:08,845 - INFO - Nmap scan for webhooks.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:08,995 - ERROR - Error resolving cdn.syndication.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:08,995 - INFO - Nmap scan for cdn.syndication.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:09,152 - ERROR - Error resolving help.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:09,152 - INFO - Nmap scan for help.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:09,304 - ERROR - Error resolving studio.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:09,304 - INFO - Nmap scan for studio.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:09,482 - ERROR - Error resolving sdn.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:09,483 - INFO - Nmap scan for sdn.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:09,643 - ERROR - Error resolving web-api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:09,643 - INFO - Nmap scan for web-api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:09,958 - ERROR - Error resolving preferencecenter.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:09,968 - INFO - Nmap scan for preferencecenter.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:10,361 - ERROR - Error resolving www.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:10,361 - INFO - Nmap scan for www.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:10,749 - ERROR - Error resolving mail01.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:10,750 - INFO - Nmap scan for mail01.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:11,020 - ERROR - Error resolving devcommunity.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:11,021 - INFO - Nmap scan for devcommunity.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:11,166 - ERROR - Error resolving support.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:11,166 - INFO - Nmap scan for support.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:11,322 - ERROR - Error resolving probe.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:11,323 - INFO - Nmap scan for probe.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:11,563 - ERROR - Error resolving legal.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:11,564 - INFO - Nmap scan for legal.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:11,722 - ERROR - Error resolving caps.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:11,723 - INFO - Nmap scan for caps.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:11,867 - ERROR - Error resolving payments.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:11,867 - INFO - Nmap scan for payments.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:12,232 - ERROR - Error resolving ads.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:12,232 - INFO - Nmap scan for ads.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:12,458 - ERROR - Error resolving x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:12,459 - INFO - Nmap scan for x.com: IP=Unknown, Ports=
+2025-02-28 04:03:12,697 - ERROR - Error resolving api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:12,698 - INFO - Nmap scan for api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:12,849 - ERROR - Error resolving marketing.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:12,850 - INFO - Nmap scan for marketing.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:13,002 - ERROR - Error resolving mobile.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:13,003 - INFO - Nmap scan for mobile.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:13,144 - ERROR - Error resolving sdn.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:13,144 - INFO - Nmap scan for sdn.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:13,306 - ERROR - Error resolving pro.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:13,306 - INFO - Nmap scan for pro.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:13,485 - ERROR - Error resolving api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:13,485 - INFO - Nmap scan for api.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:13,691 - ERROR - Error resolving probe-t.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:13,691 - INFO - Nmap scan for probe-t.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:13,942 - ERROR - Error resolving mx4.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:13,942 - INFO - Nmap scan for mx4.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:14,221 - ERROR - Error resolving payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:14,221 - INFO - Nmap scan for payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:14,440 - ERROR - Error resolving td.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:14,442 - INFO - Nmap scan for td.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:14,619 - ERROR - Error resolving tdapi.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:14,619 - INFO - Nmap scan for tdapi.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:14,778 - ERROR - Error resolving jf-t.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:14,778 - INFO - Nmap scan for jf-t.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:14,921 - ERROR - Error resolving webhooks.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:14,921 - INFO - Nmap scan for webhooks.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:15,076 - ERROR - Error resolving dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:15,076 - INFO - Nmap scan for dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:15,223 - ERROR - Error resolving business.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:15,223 - INFO - Nmap scan for business.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:15,388 - ERROR - Error resolving api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:15,389 - INFO - Nmap scan for api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:15,564 - ERROR - Error resolving tweetdeck.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:15,565 - INFO - Nmap scan for tweetdeck.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:15,715 - ERROR - Error resolving blog-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:15,716 - INFO - Nmap scan for blog-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:15,869 - ERROR - Error resolving analytics.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:15,869 - INFO - Nmap scan for analytics.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:16,049 - ERROR - Error resolving web-api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:16,049 - INFO - Nmap scan for web-api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:16,216 - ERROR - Error resolving blog.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:16,216 - INFO - Nmap scan for blog.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:16,374 - ERROR - Error resolving webhooks.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:16,374 - INFO - Nmap scan for webhooks.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:16,555 - ERROR - Error resolving ton.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:16,555 - INFO - Nmap scan for ton.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:16,727 - ERROR - Error resolving api-stream.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:16,727 - INFO - Nmap scan for api-stream.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:17,069 - ERROR - Error resolving pic.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:17,069 - INFO - Nmap scan for pic.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:17,709 - ERROR - Error resolving mx3.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:17,710 - INFO - Nmap scan for mx3.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:18,039 - ERROR - Error resolving mobile-api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:18,039 - INFO - Nmap scan for mobile-api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:18,316 - ERROR - Error resolving mobile-api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:18,316 - INFO - Nmap scan for mobile-api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:18,581 - ERROR - Error resolving developer.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:18,582 - INFO - Nmap scan for developer.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:18,859 - ERROR - Error resolving api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:18,860 - INFO - Nmap scan for api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:19,001 - ERROR - Error resolving create.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:19,001 - INFO - Nmap scan for create.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:19,160 - ERROR - Error resolving tpop-api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:19,160 - INFO - Nmap scan for tpop-api.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:19,328 - ERROR - Error resolving ads-api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:19,328 - INFO - Nmap scan for ads-api.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:19,500 - ERROR - Error resolving verified.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:19,500 - INFO - Nmap scan for verified.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:19,747 - ERROR - Error resolving payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:19,747 - INFO - Nmap scan for payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:19,945 - ERROR - Error resolving livecampaign-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:19,945 - INFO - Nmap scan for livecampaign-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:20,147 - ERROR - Error resolving shop.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:20,147 - INFO - Nmap scan for shop.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:20,300 - ERROR - Error resolving cards-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:20,301 - INFO - Nmap scan for cards-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:20,450 - ERROR - Error resolving gdpr.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:20,451 - INFO - Nmap scan for gdpr.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:20,601 - ERROR - Error resolving payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:20,602 - INFO - Nmap scan for payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:20,777 - ERROR - Error resolving platform.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:20,777 - INFO - Nmap scan for platform.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:21,089 - ERROR - Error resolving publish.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:21,089 - INFO - Nmap scan for publish.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:21,337 - ERROR - Error resolving careers.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:21,338 - INFO - Nmap scan for careers.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:21,492 - ERROR - Error resolving jf.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:21,493 - INFO - Nmap scan for jf.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:21,681 - ERROR - Error resolving partners.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:21,681 - INFO - Nmap scan for partners.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:21,841 - ERROR - Error resolving wr.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:21,842 - INFO - Nmap scan for wr.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:21,985 - ERROR - Error resolving about.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:21,986 - INFO - Nmap scan for about.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:22,156 - ERROR - Error resolving www.shop.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:22,157 - INFO - Nmap scan for www.shop.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:22,325 - ERROR - Error resolving mobile-api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:22,325 - INFO - Nmap scan for mobile-api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:22,475 - ERROR - Error resolving wz.dev.unute.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:22,475 - INFO - Nmap scan for wz.dev.unute.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:22,647 - ERROR - Error resolving aa.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:22,647 - INFO - Nmap scan for aa.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:22,801 - ERROR - Error resolving sdn.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:22,801 - INFO - Nmap scan for sdn.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:22,960 - ERROR - Error resolving docs.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:22,961 - INFO - Nmap scan for docs.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:23,145 - ERROR - Error resolving preferencecenter.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:23,145 - INFO - Nmap scan for preferencecenter.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:23,292 - ERROR - Error resolving blog.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:23,292 - INFO - Nmap scan for blog.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:23,445 - ERROR - Error resolving web-api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:23,445 - INFO - Nmap scan for web-api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:23,635 - ERROR - Error resolving x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:23,636 - INFO - Nmap scan for x.com: IP=Unknown, Ports=
+2025-02-28 04:03:23,801 - ERROR - Error resolving cdn.syndication.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:23,802 - INFO - Nmap scan for cdn.syndication.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:24,005 - ERROR - Error resolving developer.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:24,005 - INFO - Nmap scan for developer.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:24,172 - ERROR - Error resolving mx4.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:24,172 - INFO - Nmap scan for mx4.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:24,318 - ERROR - Error resolving ads.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:24,319 - INFO - Nmap scan for ads.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:24,536 - ERROR - Error resolving verified.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:24,536 - INFO - Nmap scan for verified.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:24,721 - ERROR - Error resolving m.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:24,721 - INFO - Nmap scan for m.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:24,929 - ERROR - Error resolving ads-api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:24,929 - INFO - Nmap scan for ads-api.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:25,074 - ERROR - Error resolving about.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:25,075 - INFO - Nmap scan for about.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:25,240 - ERROR - Error resolving payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:25,240 - INFO - Nmap scan for payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:25,405 - ERROR - Error resolving web-api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:25,405 - INFO - Nmap scan for web-api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:25,598 - ERROR - Error resolving support.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:25,599 - INFO - Nmap scan for support.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:25,759 - ERROR - Error resolving api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:25,759 - INFO - Nmap scan for api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:25,916 - ERROR - Error resolving docs.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:25,917 - INFO - Nmap scan for docs.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:26,177 - ERROR - Error resolving livecampaign-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:26,177 - INFO - Nmap scan for livecampaign-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:26,759 - ERROR - Error resolving probe.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:26,759 - INFO - Nmap scan for probe.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:27,060 - ERROR - Error resolving transparency.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:27,060 - INFO - Nmap scan for transparency.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:27,810 - ERROR - Error resolving syndication.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:27,811 - INFO - Nmap scan for syndication.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:28,626 - ERROR - Error resolving api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:28,627 - INFO - Nmap scan for api.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:29,149 - ERROR - Error resolving caps.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:29,163 - INFO - Nmap scan for caps.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:29,447 - ERROR - Error resolving create.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:29,448 - INFO - Nmap scan for create.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:30,006 - ERROR - Error resolving sdn.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:30,007 - INFO - Nmap scan for sdn.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:30,511 - ERROR - Error resolving help.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:30,511 - INFO - Nmap scan for help.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:30,824 - ERROR - Error resolving probe-t.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:30,824 - INFO - Nmap scan for probe-t.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:30,985 - ERROR - Error resolving pic.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:30,986 - INFO - Nmap scan for pic.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:31,132 - ERROR - Error resolving payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:31,132 - INFO - Nmap scan for payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:31,288 - ERROR - Error resolving api-stream.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:31,289 - INFO - Nmap scan for api-stream.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:31,545 - ERROR - Error resolving mobile-api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:31,546 - INFO - Nmap scan for mobile-api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:31,894 - ERROR - Error resolving careers.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:31,895 - INFO - Nmap scan for careers.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:32,049 - ERROR - Error resolving partners.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:32,050 - INFO - Nmap scan for partners.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:32,193 - ERROR - Error resolving jf.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:32,193 - INFO - Nmap scan for jf.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:32,347 - ERROR - Error resolving apps.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:32,347 - INFO - Nmap scan for apps.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:32,527 - ERROR - Error resolving mobile-api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:32,527 - INFO - Nmap scan for mobile-api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:32,684 - ERROR - Error resolving marketing.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:32,684 - INFO - Nmap scan for marketing.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:32,837 - ERROR - Error resolving mail01.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:32,837 - INFO - Nmap scan for mail01.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:33,031 - ERROR - Error resolving cards.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:33,031 - INFO - Nmap scan for cards.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:33,186 - ERROR - Error resolving devcommunity.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:33,187 - INFO - Nmap scan for devcommunity.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:33,383 - ERROR - Error resolving studio.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:33,384 - INFO - Nmap scan for studio.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:33,575 - ERROR - Error resolving mobile.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:33,576 - INFO - Nmap scan for mobile.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:33,748 - ERROR - Error resolving tdapi.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:33,749 - INFO - Nmap scan for tdapi.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:33,930 - ERROR - Error resolving analytics.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:33,930 - INFO - Nmap scan for analytics.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:34,601 - ERROR - Error resolving aa.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:34,602 - INFO - Nmap scan for aa.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:35,074 - ERROR - Error resolving jf-t.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:35,074 - INFO - Nmap scan for jf-t.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:35,348 - ERROR - Error resolving mobile-api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:35,348 - INFO - Nmap scan for mobile-api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:35,654 - ERROR - Error resolving platform.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:35,654 - INFO - Nmap scan for platform.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:35,876 - ERROR - Error resolving td.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:35,877 - INFO - Nmap scan for td.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:36,345 - ERROR - Error resolving sdn.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:36,345 - INFO - Nmap scan for sdn.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:36,766 - ERROR - Error resolving legal.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:36,766 - INFO - Nmap scan for legal.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:37,349 - ERROR - Error resolving publish.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:37,349 - INFO - Nmap scan for publish.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:37,827 - ERROR - Error resolving tpop-api.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:37,828 - INFO - Nmap scan for tpop-api.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:37,901 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:37] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:03:37,967 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:37] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:03:38,197 - ERROR - Error resolving dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:38,198 - INFO - Nmap scan for dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:38,483 - ERROR - Error resolving webhooks.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:38,483 - INFO - Nmap scan for webhooks.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:38,876 - ERROR - Error resolving shop.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:38,877 - INFO - Nmap scan for shop.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:39,255 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:39] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:03:39,569 - ERROR - Error resolving webhooks.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:39,570 - INFO - Nmap scan for webhooks.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:39,882 - ERROR - Error resolving api.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:39,883 - INFO - Nmap scan for api.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:40,266 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:40] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:03:40,573 - ERROR - Error resolving privacy.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:40,574 - INFO - Nmap scan for privacy.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:41,102 - ERROR - Error resolving blog-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:41,102 - INFO - Nmap scan for blog-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:41,896 - ERROR - Error resolving cards-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:41,896 - INFO - Nmap scan for cards-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:42,493 - ERROR - Error resolving web-api.payments-prod.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:42,495 - INFO - Nmap scan for web-api.payments-prod.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:43,205 - ERROR - Error resolving ton.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:43,206 - INFO - Nmap scan for ton.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:43,820 - ERROR - Error resolving payments.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:43,826 - INFO - Nmap scan for payments.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:44,404 - ERROR - Error resolving upload.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:44,404 - INFO - Nmap scan for upload.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:45,453 - ERROR - Error resolving api.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:45,457 - INFO - Nmap scan for api.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:46,317 - ERROR - Error resolving payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:46,318 - INFO - Nmap scan for payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:47,031 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:47] "[33mGET /scan/x.com HTTP/1.1[0m" 404 -
+2025-02-28 04:03:47,436 - ERROR - Error resolving www.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:47,444 - INFO - Nmap scan for www.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:48,334 - ERROR - Error resolving business.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:48,334 - INFO - Nmap scan for business.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:49,107 - ERROR - Error resolving wr.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:49,113 - INFO - Nmap scan for wr.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:50,071 - ERROR - Error resolving mx3.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:50,071 - INFO - Nmap scan for mx3.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:51,109 - ERROR - Error resolving tweetdeck.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:51,129 - INFO - Nmap scan for tweetdeck.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:51,621 - ERROR - Error resolving gdpr.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:51,621 - INFO - Nmap scan for gdpr.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:51,977 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:51] "GET /api/scan-results/x.com HTTP/1.1" 200 -
+2025-02-28 04:03:52,600 - ERROR - Error resolving webhooks.payments-dev.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:52,601 - INFO - Nmap scan for webhooks.payments-dev.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:53,527 - ERROR - Error resolving wz.dev.unute.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:53,528 - INFO - Nmap scan for wz.dev.unute.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:54,673 - ERROR - Error resolving pro.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:54,677 - INFO - Nmap scan for pro.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:55,321 - ERROR - Error resolving www.shop.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:55,321 - INFO - Nmap scan for www.shop.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:56,000 - ERROR - Error resolving sdn.payments-staging.x.com: [Errno -3] Temporary failure in name resolution
+2025-02-28 04:03:56,001 - INFO - Nmap scan for sdn.payments-staging.x.com: IP=Unknown, Ports=
+2025-02-28 04:03:56,047 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:56] "GET /scan/x.com HTTP/1.1" 200 -
+2025-02-28 04:03:56,101 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:56] "GET /api/threat-map/x.com HTTP/1.1" 200 -
+2025-02-28 04:03:59,282 - INFO - 127.0.0.1 - - [28/Feb/2025 04:03:59] "GET /api/scan-results/x.com HTTP/1.1" 200 -
+2025-02-28 04:04:49,927 - INFO - 127.0.0.1 - - [28/Feb/2025 04:04:49] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-02-28 04:04:49,996 - INFO - 127.0.0.1 - - [28/Feb/2025 04:04:49] "POST /api/subdomains HTTP/1.1" 200 -
+2025-02-28 04:04:55,624 - INFO - 127.0.0.1 - - [28/Feb/2025 04:04:55] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:04:55,655 - INFO - 127.0.0.1 - - [28/Feb/2025 04:04:55] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-02-28 04:04:59,669 - INFO - 127.0.0.1 - - [28/Feb/2025 04:04:59] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 04:04:59,876 - INFO - 127.0.0.1 - - [28/Feb/2025 04:04:59] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-02-28 04:05:00,121 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:00] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 04:05:00,309 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:00] "[35m[1mPOST /api/whois HTTP/1.1[0m" 500 -
+2025-02-28 04:05:03,827 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:03] "[35m[1mPOST /api/whois HTTP/1.1[0m" 500 -
+2025-02-28 04:05:04,808 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:04] "[35m[1mPOST /api/whois HTTP/1.1[0m" 500 -
+2025-02-28 04:05:05,619 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:05] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-02-28 04:05:05,757 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:05] "[35m[1mPOST /api/whois HTTP/1.1[0m" 500 -
+2025-02-28 04:05:05,948 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:05] "[33mGET /scan/x.com HTTP/1.1[0m" 404 -
+2025-02-28 04:05:06,189 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:06] "GET /api/threat-map/x.com HTTP/1.1" 200 -
+2025-02-28 04:05:09,177 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:09] "GET /api/scan-results/x.com HTTP/1.1" 200 -
+2025-02-28 04:05:09,820 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:09] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-02-28 04:05:09,879 - INFO - 127.0.0.1 - - [28/Feb/2025 04:05:09] "[35m[1mPOST /api/ssl HTTP/1.1[0m" 500 -
+2025-03-01 01:29:38,181 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-01 01:29:38,205 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-01 01:29:38,208 - INFO -  * Restarting with stat
+2025-03-01 01:29:39,681 - WARNING -  * Debugger is active!
+2025-03-01 01:29:39,682 - INFO -  * Debugger PIN: 553-530-177
+2025-03-01 01:30:44,904 - INFO - 127.0.0.1 - - [01/Mar/2025 01:30:44] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:30:56,734 - INFO - 127.0.0.1 - - [01/Mar/2025 01:30:56] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:31:14,729 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:14] "[33mGET /scan/lenovo.com HTTP/1.1[0m" 404 -
+2025-03-01 01:31:17,835 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:17] "GET /api/scan-results/lenovo.com HTTP/1.1" 200 -
+2025-03-01 01:31:18,296 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:18] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-03-01 01:31:19,528 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:19] "POST /api/malware HTTP/1.1" 200 -
+2025-03-01 01:31:22,200 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:22] "OPTIONS /api/whois HTTP/1.1" 200 -
+2025-03-01 01:31:23,095 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:23] "POST /api/whois HTTP/1.1" 200 -
+2025-03-01 01:31:31,946 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:31] "OPTIONS /api/cve-scan HTTP/1.1" 200 -
+2025-03-01 01:31:31,962 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:31] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-03-01 01:31:34,372 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:34] "[33mGET /scan/lenovo.com HTTP/1.1[0m" 404 -
+2025-03-01 01:31:36,339 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:36] "POST /api/cve-scan HTTP/1.1" 200 -
+2025-03-01 01:31:37,647 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:37] "GET /api/scan-results/lenovo.com HTTP/1.1" 200 -
+2025-03-01 01:31:40,963 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:40] "OPTIONS /api/ssl HTTP/1.1" 200 -
+2025-03-01 01:31:41,390 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:41] "POST /api/ssl HTTP/1.1" 200 -
+2025-03-01 01:31:46,101 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:46] "GET /api/threat-map/lenovo.com HTTP/1.1" 200 -
+2025-03-01 01:31:47,860 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:47] "GET /api/threat-map/lenovo.com HTTP/1.1" 200 -
+2025-03-01 01:31:48,685 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:48] "GET /api/threat-map/lenovo.com HTTP/1.1" 200 -
+2025-03-01 01:31:51,493 - INFO - 127.0.0.1 - - [01/Mar/2025 01:31:51] "POST /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:32:00,410 - INFO - 127.0.0.1 - - [01/Mar/2025 01:32:00] "POST /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:32:32,022 - INFO - 127.0.0.1 - - [01/Mar/2025 01:32:32] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:32:32,681 - INFO - 127.0.0.1 - - [01/Mar/2025 01:32:32] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:32:49,063 - INFO - 127.0.0.1 - - [01/Mar/2025 01:32:49] "OPTIONS /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:32:50,809 - INFO - 127.0.0.1 - - [01/Mar/2025 01:32:50] "POST /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:32:55,402 - INFO - 127.0.0.1 - - [01/Mar/2025 01:32:55] "OPTIONS /api/malware HTTP/1.1" 200 -
+2025-03-01 01:32:56,605 - INFO - 127.0.0.1 - - [01/Mar/2025 01:32:56] "POST /api/malware HTTP/1.1" 200 -
+2025-03-01 01:33:05,127 - INFO - 127.0.0.1 - - [01/Mar/2025 01:33:05] "POST /api/subdomains HTTP/1.1" 200 -
+2025-03-01 01:34:43,028 - INFO - 127.0.0.1 - - [01/Mar/2025 01:34:43] "POST /api/subdomains HTTP/1.1" 200 -

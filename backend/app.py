@@ -4,6 +4,8 @@ import requests
 import sqlite3
 import ssl
 import socket
+import re
+import logging
 import ipinfo
 import subprocess
 from datetime import datetime, timedelta
@@ -19,9 +21,12 @@ API_KEY = '270d112f0b8b37910aafe4c612ad5b93ffae8fd48ab0b2f68c4c9723acf2e90f'
 DB_FILE = 'subdomains.db'
 IPINFO_TOKEN = '4d0115912feee5'
 ABUSEIPB_KEY = '7e9cd5d791817a00bd8ee844c00cdc5b426fb50fd12e9bddc6c2d991c14d4b580dbfcfed099d397b'
+NVDAPI_KEY = '9961cbb9-d755-4d00-a92e-13f55d064c5f'
 
 # Initialize IPinfo handler
 ipinfo_handler = ipinfo.getHandler(IPINFO_TOKEN)
+
+logging.basicConfig(filename="app.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 def init_db():
     conn = sqlite3.connect(DB_FILE)
@@ -58,24 +63,23 @@ def init_db():
     conn.close()
 
 def run_nmap_scan(subdomain):
-    """Runs Nmap scan on a subdomain and returns IP, hostname, and open ports."""
+    """Runs an Nmap scan on a subdomain and logs output."""
     try:
-        result = subprocess.check_output(['nmap', '-Pn', '-sV', subdomain], text=True)
+        result = subprocess.check_output(['nmap', '-Pn', '-sV', '-p-', '--open', subdomain], text=True)
         try:
             ip_address = socket.gethostbyname(subdomain)
         except Exception as e:
-            print(f"Error resolving {subdomain}: {e}")
+            logging.error(f"Error resolving {subdomain}: {e}")
             ip_address = "Unknown"
+
         hostname = subdomain
-        open_ports = []
-        for line in result.splitlines():
-            if "/tcp" in line or "/udp" in line:
-                open_ports.append(line.strip())
-        open_ports = "\n".join(open_ports)
-        print(f"Nmap scan for {subdomain}: IP={ip_address}, Ports={open_ports}")
-        return ip_address, hostname, open_ports
+        open_ports = [line.strip() for line in result.splitlines() if "/tcp" in line or "/udp" in line]
+        open_ports_str = "\n".join(open_ports)
+
+        logging.info(f"Nmap scan for {subdomain}: IP={ip_address}, Ports={open_ports_str}")
+        return ip_address, hostname, open_ports_str
     except Exception as e:
-        print(f"Error scanning {subdomain}: {e}")
+        logging.error(f"Error scanning {subdomain}: {e}")
         return None, None, None
 
 def store_scan_results(domain, subdomain, ip, hostname, open_ports):
@@ -192,15 +196,31 @@ def get_ip_geodata(ip):
     except:
         return None
 
+
+def is_valid_domain(domain):
+    """Check if a domain resolves to an IP"""
+    try:
+        socket.gethostbyname(domain)
+        return True
+    except socket.gaierror:
+        return False
+
 @app.route('/scan/<domain>', methods=['GET'])
 def scan_domain(domain):
     subdomains = fetch_subdomains_from_db(domain)
     if not subdomains:
         return jsonify({"error": "No subdomains found for this domain."}), 404
-    for sub in subdomains:
+
+    valid_subdomains = [sub for sub in subdomains if is_valid_domain(sub)]
+
+    if not valid_subdomains:
+        return jsonify({"error": "No valid subdomains found."}), 404
+
+    for sub in valid_subdomains:
         ip, hostname, open_ports = run_nmap_scan(sub)
         if ip:
             store_scan_results(domain, sub, ip, hostname, open_ports)
+
     return jsonify({"status": "Scan completed and results stored."})
 
 @app.route('/api/scan-results/<domain>', methods=['GET'])
@@ -346,6 +366,63 @@ def get_threat_map(domain):
         return jsonify([gd for gd in geo_data if gd and gd.get('coords')])
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+        
+ 
+@app.route('/api/cve-scan', methods=['POST'])
+def get_cve_scan():
+    domain = request.json.get('domain')
+    if not domain:
+        return jsonify({'error': 'Domain is required'}), 400
+
+    query = 'SELECT DISTINCT open_ports FROM scan_results WHERE domain = ?'
+    rows = execute_query(query, (domain,), fetch=True)
+
+    open_ports = []
+    for row in rows:
+        ports = row[0].split("\n") if row[0] else []
+        open_ports.extend([port.strip() for port in ports if port.strip()])
+
+    cve_results = []
+    for port in open_ports:
+        try:
+            # Extract service name using regex
+            match = re.search(r'\d+/\w+\s+open\s+([a-zA-Z0-9-]+)', port)
+            service_name = match.group(1) if match else "unknown"
+            service_name = service_name.split()[0].lower().strip()  # Get only core service name
+
+            if service_name in ["unknown", "tcpwrapped", "ssl/https"]:
+                continue  # Ignore irrelevant services
+
+            print(f"Extracted Service for CVE Scan: {service_name}")
+
+            api_url = f"https://services.nvd.nist.gov/rest/json/cves/1.0?keyword={service_name}&apiKey={NVDAPI_KEY}"
+            response = requests.get(api_url, timeout=10)
+
+            if response.status_code == 429:
+                return jsonify({"error": "Rate limit exceeded. Try again later."}), 429
+
+            response.raise_for_status()
+            data = response.json().get("result", {}).get("CVE_Items", [])
+
+            for item in data:
+                cve_id = item.get("cve", {}).get("CVE_data_meta", {}).get("ID")
+                description = item.get("cve", {}).get("description", {}).get("description_data", [{}])[0].get("value", "No description available")
+                severity = item.get("impact", {}).get("baseMetricV3", {}).get("cvssV3", {}).get("baseSeverity", "Unknown")
+                reference_link = f"https://nvd.nist.gov/vuln/detail/{cve_id}"
+
+                cve_results.append({
+                    "id": cve_id,
+                    "service": service_name,
+                    "severity": severity,
+                    "description": description,
+                    "link": reference_link
+                })
+        except Exception as e:
+            logging.error(f"Error fetching CVE data for {port}: {e}")
+            print(f"Error fetching CVE data for {port}: {e}")
+
+    return jsonify({"cve_results": cve_results if cve_results else [{"id": "N/A", "service": "N/A", "severity": "N/A", "description": "No vulnerabilities found.", "link": "#"}]})
+
 
 if __name__ == '__main__':
     init_db()
